@@ -16,13 +16,16 @@
     <script>
         async function init() {
             const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
+            const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
+            //console.log(data2)
+            console.log(data2['Healthy life expectancy'])
 
-            var width = window.screen.availWidth*.80; // Width of the SVG element
-            var height = window.screen.availHeight*.80; // Height of the SVG element
+            var width = window.screen.availWidth*.70; // Width of the SVG element
+            var height = window.screen.availHeight*.70; // Height of the SVG element
             var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
 
-            var x = d3.scaleLog(10).domain([10, 150]).range([0, width]);
-            var y = d3.scaleLog(10).domain([10, 150]).range([height, 0])
+            var x = d3.scaleLinear(10).domain([2, 10]).range([0, width]);
+            var y = d3.scaleLinear(10).domain([40, 85]).range([height, 0])
 
             d3.select("svg")
                 .attr("width", width + 2 * margin)
@@ -30,20 +33,20 @@
                 .append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
                 .selectAll("circle")
-                .data(data)
+                .data(data2)
                 .enter()
                 .append("circle")
-                .attr("cx", function (d, i) { return x(d.AverageCityMPG); })
-                .attr("cy", function (d, i) { return y(d.AverageHighwayMPG); })
-                .attr("r", function (d, i) { return parseInt(d.EngineCylinders) + 2; })
+                .attr("cx", function (d, i) { return x(d['Ladder score']); })
+                .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
+                .attr("r", function (d, i) { return parseInt(1) + 2; })
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
-                .call(d3.axisLeft(y).tickValues([10, 20, 50, 100]).tickFormat(d3.format("~s")))
+                .call(d3.axisLeft(y).tickValues([40, 60, 80]).tickFormat(d3.format("~s")))
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-                .call(d3.axisBottom(x).tickValues([10, 20, 50, 100]).tickFormat(d3.format("~s")))
+                .call(d3.axisBottom(x).tickValues([2, 4, 6, 8]).tickFormat(d3.format("~s")))
 
         }
     </script>
