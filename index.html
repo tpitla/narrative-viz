@@ -8,15 +8,18 @@
 </style>
 
 <body onload='init()'>
-    <svg width=300 height=300>
+    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <svg>
     </svg>
+    
+    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
     <script>
         async function init() {
-            const data = await d3.csv("cars2017.csv");
+            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
 
-            var width = 200; // Width of the SVG element
-            var height = 200; // Height of the SVG element
-            var margin = 50; // Margin that will be used inside the SVG element
+            var width = window.screen.availWidth*.80; // Width of the SVG element
+            var height = window.screen.availHeight*.80; // Height of the SVG element
+            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
 
             var x = d3.scaleLog(10).domain([10, 150]).range([0, width]);
             var y = d3.scaleLog(10).domain([10, 150]).range([height, 0])
