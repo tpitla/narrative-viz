@@ -5,14 +5,25 @@
         fill: lightblue;
         stroke: black;
     }
+    body {
+        margin: 0px;
+      }
+      .tick {
+        font-size: 22;
+      }
+      .axis-label {
+        fill: black;
+        font-size: 20;
+        font-family: sans-serif;
+      }
 </style>
 
 <body onload='init()'>
-    <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <!-- <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button> -->
     <svg>
     </svg>
     
-    <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
+    <!-- <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button> -->
     <script>
         async function init() {
             const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
@@ -23,6 +34,8 @@
             var width = window.screen.availWidth*.70; // Width of the SVG element
             var height = window.screen.availHeight*.70; // Height of the SVG element
             var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
+            const innerWidth = width - margin;
+            const innerHeight = height - margin;
 
             var x = d3.scaleLinear(10).domain([2, 10]).range([0, width]);
             var y = d3.scaleLinear(10).domain([40, 85]).range([height, 0])
@@ -39,14 +52,28 @@
                 .attr("cx", function (d, i) { return x(d['Ladder score']); })
                 .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
                 .attr("r", function (d, i) { return parseInt(1) + 2; })
+                .style("fill", "#69b3a2")
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
                 .call(d3.axisLeft(y).tickValues([40, 60, 80]).tickFormat(d3.format("~s")))
+                .append("text")
+                .attr('class', 'axis-label')
+                .attr('x', -innerHeight / 1.8)
+                .attr('y', -60)
+                .attr('transform', `rotate(-90)`)
+                .style('text-anchor', 'middle')
+                .text("TEST");
+
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
                 .call(d3.axisBottom(x).tickValues([2, 4, 6, 8]).tickFormat(d3.format("~s")))
+                .append("text")
+                .attr('class', 'axis-label')
+                .attr('x', innerWidth / 1.8)
+                .attr('y', 100)
+                .text("TEST");
 
         }
     </script>
