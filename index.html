@@ -37,8 +37,9 @@
             const innerWidth = width - margin;
             const innerHeight = height - margin;
 
-            var x = d3.scaleLinear(10).domain([2, 10]).range([0, width]);
-            var y = d3.scaleLinear(10).domain([40, 85]).range([height, 0])
+            var x = d3.scaleLinear().domain([2, 10]).range([0, width]);
+            var y = d3.scaleLinear().domain([40, 85]).range([height, 0])
+            var r = d3.scaleLinear().domain([0, 1]).range([2, 30])
 
             d3.select("svg")
                 .attr("width", width + 2 * margin)
@@ -51,19 +52,19 @@
                 .append("circle")
                 .attr("cx", function (d, i) { return x(d['Ladder score']); })
                 .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
-                .attr("r", function (d, i) { return parseInt(1) + 2; })
+                .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
                 .style("fill", "#69b3a2")
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
-                .call(d3.axisLeft(y).tickValues([40, 60, 80]).tickFormat(d3.format("~s")))
+                .call(d3.axisLeft(y).tickValues([40, 50, 60, 70, 80]).tickFormat(d3.format("~s")))
                 .append("text")
                 .attr('class', 'axis-label')
                 .attr('x', -innerHeight / 1.8)
                 .attr('y', -60)
                 .attr('transform', `rotate(-90)`)
                 .style('text-anchor', 'middle')
-                .text("TEST");
+                .text("Life Expectancy");
 
 
             d3.select("svg").append("g")
@@ -73,7 +74,7 @@
                 .attr('class', 'axis-label')
                 .attr('x', innerWidth / 1.8)
                 .attr('y', 100)
-                .text("TEST");
+                .text("Happiness Score");
 
         }
     </script>
