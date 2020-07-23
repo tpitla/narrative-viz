@@ -2,8 +2,7 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style>
     circle {
-        fill: lightblue;
-        stroke: black;
+        fill-opacity: .75;
     }
     body {
         margin: 0px;
@@ -37,11 +36,12 @@
             const innerWidth = width - margin;
             const innerHeight = height - margin;
 
-            var x = d3.scaleLinear().domain([2, 10]).range([0, width]);
-            var y = d3.scaleLinear().domain([40, 85]).range([height, 0])
-            var r = d3.scaleLinear().domain([0, 1]).range([2, 30])
+            var x = d3.scaleLinear().domain([2, 8]).range([0, width]);
+            var y = d3.scaleLinear().domain([40, 80]).range([height, 0])
+            var r = d3.scaleLinear().domain([0, 1]).range([2, 60])
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-            d3.select("svg")
+            var svg = d3.select("svg")
                 .attr("width", width + 2 * margin)
                 .attr("height", height + 2 * margin)
                 .append("g")
@@ -53,7 +53,7 @@
                 .attr("cx", function (d, i) { return x(d['Ladder score']); })
                 .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
                 .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
-                .style("fill", "#69b3a2")
+                .style("fill", function(d) {return color(d["Regional indicator"]);})
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
@@ -75,6 +75,30 @@
                 .attr('x', innerWidth / 1.8)
                 .attr('y', 100)
                 .text("Happiness Score");
+
+
+            var legend = svg.selectAll(".legend")
+            .data(color.domain())
+            .enter().append("g")
+            .classed("legend", true)
+            .attr("transform", function(d, i) {
+                console.log(d);
+                return "translate(0," + i * 20 + ")";
+            });
+
+            legend.append("rect")
+            .attr("x", width/2 - 10)
+            .attr("width", 12)
+            .attr("height", 12)
+            .style("fill", color);
+
+            legend.append("text")
+            .attr("x", width/2 - 26)
+            .attr("dy", ".65em")
+            .text(function(d) {
+            return d;
+        }
+        );
 
         }
     </script>
