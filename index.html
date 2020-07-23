@@ -1,20 +1,45 @@
 <html>
 <script src='https://d3js.org/d3.v5.min.js'></script>
+<script src="d3-tip.js"></script>
+
 <style>
     circle {
         fill-opacity: .60;
     }
     body {
         margin: 0px;
-      }
-      .tick {
+    }
+    .tick {
         font-size: 22;
-      }
-      .axis-label {
+    }
+    .axis-label {
         fill: black;
         font-size: 20;
         font-family: sans-serif;
-      }
+    }
+
+    div.tooltip {
+        position: absolute;
+        text-align: left;
+        line-height: 1.5;
+        font-weight: bold;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        border-radius: 2px;
+    }
+
+    /* div.tooltip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 10px;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+    } */
+
 </style>
 
 <body onload='init()'>
@@ -41,6 +66,10 @@
             var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0);
+
             var svg = d3.select("svg")
                 .attr("width", width + 2 * margin)
                 .attr("height", height + 2 * margin)
@@ -55,6 +84,23 @@
                 .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
                 //.attr("r", function (d, i) { return parseInt(1) + 20; })
                 .style("fill", function(d) {return color(d["Regional indicator"]);})
+                .on("mouseover", function(d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div .html(
+                    'Country Name: ' + 
+                    d['Country name'] +
+                    "<br/>"  +
+                    'Happiness Score: ' + 
+                    d['Ladder score'] +
+                    "<br/>"  +
+                    'Life expectancy: ' + 
+                    d['Healthy life expectancy'] +
+                    "<br/>" )     
+                    .style("left", (d3.event.pageX) + "px")             
+                    .style("top", (d3.event.pageY - 28) + "px");
+                });
 
             d3.select("svg").append("g")
                 .attr("transform", "translate(" + margin + "," + margin + ")")
