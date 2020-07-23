@@ -2,7 +2,7 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <style>
     circle {
-        fill-opacity: .75;
+        fill-opacity: .60;
     }
     body {
         margin: 0px;
@@ -38,7 +38,7 @@
 
             var x = d3.scaleLinear().domain([2, 8]).range([0, width]);
             var y = d3.scaleLinear().domain([40, 80]).range([height, 0])
-            var r = d3.scaleLinear().domain([0, 1]).range([2, 60])
+            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
             var svg = d3.select("svg")
@@ -53,6 +53,7 @@
                 .attr("cx", function (d, i) { return x(d['Ladder score']); })
                 .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
                 .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
+                //.attr("r", function (d, i) { return parseInt(1) + 20; })
                 .style("fill", function(d) {return color(d["Regional indicator"]);})
 
             d3.select("svg").append("g")
@@ -77,27 +78,29 @@
                 .text("Happiness Score");
 
 
-            var legend = svg.selectAll(".legend")
+            var legend = d3.select("svg").selectAll(".legend")
             .data(color.domain())
             .enter().append("g")
             .classed("legend", true)
             .attr("transform", function(d, i) {
-                console.log(d);
+                //console.log(d);
                 return "translate(0," + i * 20 + ")";
             });
 
             legend.append("rect")
-            .attr("x", width/2 - 10)
-            .attr("width", 12)
-            .attr("height", 12)
+            .attr("x", width - 25)
+            .attr("y", height - 80)
+            .attr("width", 15)
+            .attr("height", 15)
             .style("fill", color);
 
             legend.append("text")
-            .attr("x", width/2 - 26)
-            .attr("dy", ".65em")
+            .attr("x", width)
+            .attr("y", height - 80)
+            .attr("dy", ".70em")
             .text(function(d) {
-            return d;
-        }
+                console.log(d);
+            return d;}
         );
 
         }
