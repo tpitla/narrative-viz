@@ -56,8 +56,8 @@
             //console.log(data2)
             console.log(data2['Healthy life expectancy'])
 
-            var width = window.screen.availWidth*.70; // Width of the SVG element
-            var height = window.screen.availHeight*.70; // Height of the SVG element
+            var width = window.screen.availWidth*.45; // Width of the SVG element
+            var height = window.screen.availHeight*.45; // Height of the SVG element
             var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
             const innerWidth = width - margin;
             const innerHeight = height - margin;
@@ -138,7 +138,7 @@
             });
 
             legend.append("rect")
-            .attr("x", 1.1*width)
+            .attr("x", 1.15*width)
             .attr("y", .95*height )
             .attr("width", 15)
             .attr("height", 15)
@@ -146,7 +146,7 @@
             .style("fill-opacity", 0.60);
 
             legend.append("text")
-            .attr("x", 1.1* width + 25)
+            .attr("x", 1.15* width + 25)
             .attr("y", .95*height)
             .attr("dy", ".70em")
             .text(function(d) {
