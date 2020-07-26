@@ -227,9 +227,15 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
     <!-- <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button> -->
     <script>
         async function init() {
-            await drawScatterPlot();
-            await drawScatterPlot2();
-            await drawScatterPlot3();
+
+
+            await drawScatterPlotGeneric('Healthy life expectancy', '#sc1', 'Life Expectancy',[1.9, 8], [39,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
+            await drawScatterPlotGeneric('Perceptions of corruption', '#sc2', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0,  1, 1.5])
+            await drawScatterPlotGeneric('Freedom to make life choices', '#sc3', 'Freedom to Make Life Choices',[1.9, 8], [0.35,1],[2, 4, 6, 8], [0.35,  1, 1.5])
+
+            // await drawScatterPlot();
+            // await drawScatterPlot2();
+            // await drawScatterPlot3();
         }
 
         async function drawScatterPlot() {
@@ -519,6 +525,141 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .attr("class", "grid")
             .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
             .call(d3.axisBottom(x).tickValues([2, 4, 6, 8]).tickSize(-height).tickFormat(d3.format("~s")))
+            .append("text")
+            .attr('class', 'axis-label')
+            .attr('x', innerWidth / 1.8)
+            .attr('y', 100)
+            .text("Happiness Score");
+
+
+            var legend = svg.selectAll(".legend")
+            .data(color.domain())
+            .enter().append("g")
+            .classed("legend", true)
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+            legend.append("rect")
+            .attr("x", 1.15*width)
+            .attr("y", .5*height )
+            .attr("width", 15)
+            .attr("height", 15)
+            .style("fill", color)
+            .style("fill-opacity", 0.60);
+
+            legend.append("text")
+            .attr("x", 1.15* width + 25)
+            .attr("y", .5*height)
+            .attr("dy", ".70em")
+            .text(function(d) {
+            return d;}
+            );
+        }
+
+
+
+        async function drawScatterPlotGeneric(metricToGraph, targetSVG, yLabel,xDomain, yDomain, xTicks, yTicks) {
+            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
+            const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
+
+
+            var width = window.screen.availWidth*.45; // Width of the SVG element
+            var height = window.screen.availHeight*.45; // Height of the SVG element
+            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
+            const innerWidth = width - margin;
+            const innerHeight = height - margin;
+
+            xMax = d3.max(data2, function(d) {
+                return parseFloat(d['Ladder score']);
+            })
+
+            xMin = d3.min(data2, function(d) {
+                return parseFloat(d['Ladder score']);
+            })
+
+
+
+            yMax = d3.max(data2, function(d) {
+                return parseFloat(d[metricToGraph]);
+            })
+
+            yMin = d3.min(data2, function(d) {
+                return parseFloat(d[metricToGraph]);
+            })
+
+
+            //console.log(data2[metricToGraph])
+            console.log('Metric to graph: ' + metricToGraph);
+            console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
+
+            // var x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
+            // var y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0])
+            // var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+
+            var x = d3.scaleLinear().domain(xDomain).range([0, width]);
+            var y = d3.scaleLinear().domain(yDomain).range([height, 0])
+            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+            
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            // Create Tooltips
+            var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
+            .html(function(d) {
+                var content = "";
+                content +=                  
+                    'Country Name: ' + 
+                    d['Country name'] +
+                    "<br/>"  +
+                    'Happiness Score: ' + 
+                    d['Ladder score'] +
+                    "<br/>"  +
+                    'Life expectancy: ' + 
+                    d['Healthy life expectancy'] +
+                    "<br/>"  +
+                    'Freedom to make life choices: ' + 
+                    d['Freedom to make life choices'] +
+                    "<br/>";
+                return content;
+            });
+
+            var svg = d3.select(targetSVG);
+
+            svg
+            .attr("width", width *1.2 + 2 * margin)
+            .attr("height", height + 2 * margin)
+            .append("g")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .call(tip)
+            .selectAll("circle")
+            .data(data2)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d, i) { return x(d['Ladder score']); })
+            .attr("cy", function (d, i) { return y(d[metricToGraph]); })
+            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
+            //.attr("r", function (d, i) { return parseInt(1) + 20; })
+            .style("fill", function(d) {return color(d["Regional indicator"]);})
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
+
+            svg.append("g")
+            .attr("class", "grid")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~s")))
+            .append("text")
+            .attr('class', 'axis-label')
+            .attr('x', -innerHeight / 1.8)
+            .attr('y', -60)
+            .attr('transform', `rotate(-90)`)
+            .style('text-anchor', 'middle')
+            .text(yLabel);
+
+
+            svg.append("g")
+            .attr("class", "grid")
+            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+            .call(d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat(d3.format("~s")))
             .append("text")
             .attr('class', 'axis-label')
             .attr('x', innerWidth / 1.8)
