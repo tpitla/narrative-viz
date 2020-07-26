@@ -352,7 +352,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             const innerHeight = height - margin;
 
             var x = d3.scaleLinear().domain([1.9, 8]).range([0, width]);
-            var y = d3.scaleLinear().domain([39, 80]).range([height, 0])
+            var y = d3.scaleLinear().domain([0, 1]).range([height, 0])
             var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -389,7 +389,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .enter()
             .append("circle")
             .attr("cx", function (d, i) { return x(d['Ladder score']); })
-            .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
+            .attr("cy", function (d, i) { return y(d['Perceptions of corruption']); })
             .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
             //.attr("r", function (d, i) { return parseInt(1) + 20; })
             .style("fill", function(d) {return color(d["Regional indicator"]);})
@@ -406,7 +406,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .attr('y', -60)
             .attr('transform', `rotate(-90)`)
             .style('text-anchor', 'middle')
-            .text("Life Expectancy");
+            .text("Perceptions of corruption");
 
 
             svg.append("g")
@@ -458,7 +458,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             const innerHeight = height - margin;
 
             var x = d3.scaleLinear().domain([1.9, 8]).range([0, width]);
-            var y = d3.scaleLinear().domain([39, 80]).range([height, 0])
+            var y = d3.scaleLinear().domain([0, 1]).range([height, 0])
             var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -495,7 +495,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .enter()
             .append("circle")
             .attr("cx", function (d, i) { return x(d['Ladder score']); })
-            .attr("cy", function (d, i) { return y(d['Healthy life expectancy']); })
+            .attr("cy", function (d, i) { return y(d['Social support']); })
             .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
             //.attr("r", function (d, i) { return parseInt(1) + 20; })
             .style("fill", function(d) {return color(d["Regional indicator"]);})
@@ -512,7 +512,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .attr('y', -60)
             .attr('transform', `rotate(-90)`)
             .style('text-anchor', 'middle')
-            .text("Life Expectancy");
+            .text("Social support");
 
 
             svg.append("g")
