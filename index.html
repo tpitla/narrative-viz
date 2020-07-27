@@ -128,6 +128,109 @@
         text-align: justify;
     }
 
+
+
+
+
+
+
+
+
+
+    /* Slideshow container */
+.slideshow-container {
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+* {box-sizing: border-box}
+
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+
+
 </style>
 
 <body onload='init()'>
@@ -206,10 +309,57 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
          </p>
             </div>
 
-      <div class="charts">
+      <!-- <div class="charts">
         <svg id="sc3">
         </svg>
-    </div>
+    </div> -->
+
+
+
+        <div class="slideshow-container charts">
+
+            <div class="mySlides fade charts">
+              <svg id="s1"></svg>
+            </div>
+            
+            <div class="mySlides fade charts">
+              <svg id="s2"></svg>
+            </div>
+            
+            <div class="mySlides fade charts">
+              <svg id="s3"></svg>
+            </div>
+
+            <div class="mySlides fade charts">
+                <svg id="s4"></svg>
+              </div>
+
+              <div class="mySlides fade charts">
+                <svg id="s5"></svg>
+              </div>
+
+              <div class="mySlides fade charts">
+                <svg id="s6"></svg>
+              </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            
+            </div>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
+                <span class="dot" onclick="currentSlide(4)"></span> 
+                <span class="dot" onclick="currentSlide(5)"></span> 
+                <span class="dot" onclick="currentSlide(6)"></span> 
+              </div>
+
+   
+
+
+
 
     <div style="position:relative;">
         <div class="titleBox">
@@ -227,18 +377,246 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
     <!-- <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button> -->
     <script>
         async function init() {
+            //const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
+            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
+            //const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv"); 
 
 
-            await drawScatterPlotGeneric('Healthy life expectancy', '#sc1', 'Life Expectancy',[1.9, 8], [39,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
-            await drawScatterPlotGeneric('Perceptions of corruption', '#sc2', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0,  1, 1.5])
-            await drawScatterPlotGeneric('Freedom to make life choices', '#sc3', 'Freedom to Make Life Choices',[1.9, 8], [0.35,1],[2, 4, 6, 8], [0.35,  1, 1.5])
+            // await drawScatterPlotGeneric(data, 'Healthy life expectancy', '#sc1', 'Life Expectancy',[1.9, 8], [40,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
+            // await drawScatterPlotGeneric(data, 'Perceptions of corruption', '#sc2', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0, 0.25, 0.50, 0.75, 1])
+            // await drawScatterPlotGeneric(data, 'Freedom to make life choices', '#sc3', 'Freedom to Make Life Choices',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
+
+
+
+            await drawScatterPlotGeneric(data, 'Healthy life expectancy', '#s1', 'Life Expectancy',[1.9, 8], [40,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
+            await drawScatterPlotGeneric(data, 'Perceptions of corruption', '#s2', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0, 0.25, 0.50, 0.75, 1])
+            await drawScatterPlotGeneric(data, 'Freedom to make life choices', '#s3', 'Freedom to Make Life Choices',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
+
+            await drawScatterPlotGeneric(data, 'Social support', '#s4', 'Social Support',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
+            await drawScatterPlotGeneric(data, 'Logged GDP per capita', '#s5', 'Logged GDP per capita',[1.9, 8], [6,11],[2, 4, 6, 8], [6, 8, 10,12])
+            await drawScatterPlotGeneric(data, 'Generosity', '#s6', 'Generosity',[1.9, 8], [-.3,.7],[2, 4, 6, 8], [-0.25, 0, 0.25, 0.50])
+
 
             // await drawScatterPlot();
             // await drawScatterPlot2();
             // await drawScatterPlot3();
         }
 
-        async function drawScatterPlot() {
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+        showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        }
+
+
+        async function drawScatterPlotGeneric(data, metricToGraph, targetSVG, yLabel,xDomain, yDomain, xTicks, yTicks) {
+
+        
+            var width = window.screen.availWidth*.45; // Width of the SVG element
+            var height = window.screen.availHeight*.45; // Height of the SVG element
+            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
+            const innerWidth = width - margin;
+            const innerHeight = height - margin;
+
+            xMax = d3.max(data, function(d) {
+                return parseFloat(d['Ladder score']);
+            })
+
+            xMin = d3.min(data, function(d) {
+                return parseFloat(d['Ladder score']);
+            })
+
+            yMax = d3.max(data, function(d) {
+                return parseFloat(d[metricToGraph]);
+            })
+
+            yMin = d3.min(data, function(d) {
+                return parseFloat(d[metricToGraph]);
+            })
+
+
+            //console.log(data2[metricToGraph])
+            console.log('Metric to graph: ' + metricToGraph);
+            console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
+
+            // var x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
+            // var y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0])
+            // var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+
+            var x = d3.scaleLinear().domain(xDomain).range([0, width]);
+            var y = d3.scaleLinear().domain(yDomain).range([height, 0])
+            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+            
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            // Create Tooltips
+            var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
+            .html(function(d) {
+                var content = "";
+                content +=                  
+                    'Country Name: ' + 
+                    d['Country name'] +
+                    "<br/>"  +
+                    'Happiness Score: ' + 
+                    d['Ladder score'] +
+                    "<br/>"  +
+                    'Life expectancy: ' + 
+                    d['Healthy life expectancy'] +
+                    "<br/>"  +
+                    'Freedom to make life choices: ' + 
+                    d['Freedom to make life choices'] +
+                    "<br/>";
+                return content;
+            });
+
+            var svg = d3.select(targetSVG);
+
+            svg
+            .attr("width", width *1.2 + 2 * margin)
+            .attr("height", height + 2 * margin)
+            .append("g")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .call(tip)
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d, i) { return x(d['Ladder score']); })
+            .attr("cy", function (d, i) { return y(d[metricToGraph]); })
+            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
+            //.attr("r", function (d, i) { return parseInt(1) + 20; })
+            .style("fill", function(d) {return color(d["Regional indicator"]);})
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
+
+            svg.append("g")
+            .attr("class", "grid")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~r")))
+            .append("text")
+            .attr('class', 'axis-label')
+            .attr('x', -innerHeight / 1.8)
+            .attr('y', -60)
+            .attr('transform', `rotate(-90)`)
+            .style('text-anchor', 'middle')
+            .text(yLabel);
+
+
+            svg.append("g")
+            .attr("class", "grid")
+            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+            .call(d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat(d3.format("~s")))
+            .append("text")
+            .attr('class', 'axis-label')
+            .attr('x', innerWidth / 1.8)
+            .attr('y', 100)
+            .text("Happiness Score");
+
+
+            var legend = svg.selectAll(".legend")
+            .data(color.domain())
+            .enter().append("g")
+            .classed("legend", true)
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+            legend.append("rect")
+            .attr("x", 1.15*width)
+            .attr("y", .5*height )
+            .attr("width", 15)
+            .attr("height", 15)
+            .style("fill", color)
+            .style("fill-opacity", 0.60);
+
+            legend.append("text")
+            .attr("x", 1.15* width + 25)
+            .attr("y", .5*height)
+            .attr("dy", ".70em")
+            .text(function(d) {
+            return d;}
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        async function drawBarChart(data, targetSVG) {
             const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
             const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
             //console.log(data2)
@@ -345,352 +723,11 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         }
 
 
-        async function drawScatterPlot2() {
-            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
-            const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
-            //console.log(data2)
-            console.log(data2['Healthy life expectancy'])
-
-            var width = window.screen.availWidth*.45; // Width of the SVG element
-            var height = window.screen.availHeight*.45; // Height of the SVG element
-            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
-            const innerWidth = width - margin;
-            const innerHeight = height - margin;
-
-            var x = d3.scaleLinear().domain([1.9, 8]).range([0, width]);
-            var y = d3.scaleLinear().domain([0, 1]).range([height, 0])
-            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            // Create Tooltips
-            var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
-            .html(function(d) {
-                var content = "";
-                content +=                  
-                    'Country Name: ' + 
-                    d['Country name'] +
-                    "<br/>"  +
-                    'Happiness Score: ' + 
-                    d['Ladder score'] +
-                    "<br/>"  +
-                    'Life expectancy: ' + 
-                    d['Healthy life expectancy'] +
-                    "<br/>"  +
-                    'Freedom to make life choices: ' + 
-                    d['Freedom to make life choices'] +
-                    "<br/>";
-                return content;
-            });
-
-            var svg = d3.select("#sc2");
-
-            svg
-            .attr("width", width *1.2 + 2 * margin)
-            .attr("height", height + 2 * margin)
-            .append("g")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(tip)
-            .selectAll("circle")
-            .data(data2)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d, i) { return x(d['Ladder score']); })
-            .attr("cy", function (d, i) { return y(d['Perceptions of corruption']); })
-            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
-            //.attr("r", function (d, i) { return parseInt(1) + 20; })
-            .style("fill", function(d) {return color(d["Regional indicator"]);})
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide);
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(d3.axisLeft(y).tickValues([40, 50, 60, 70, 80]).tickSize(-width).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', -innerHeight / 1.8)
-            .attr('y', -60)
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle')
-            .text("Perceptions of corruption");
-
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-            .call(d3.axisBottom(x).tickValues([2, 4, 6, 8]).tickSize(-height).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', innerWidth / 1.8)
-            .attr('y', 100)
-            .text("Happiness Score");
-
-
-            var legend = svg.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .classed("legend", true)
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
-
-            legend.append("rect")
-            .attr("x", 1.15*width)
-            .attr("y", .5*height )
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", color)
-            .style("fill-opacity", 0.60);
-
-            legend.append("text")
-            .attr("x", 1.15* width + 25)
-            .attr("y", .5*height)
-            .attr("dy", ".70em")
-            .text(function(d) {
-            return d;}
-            );
-        }
-
-        async function drawScatterPlot3() {
-            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
-            const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
-            //console.log(data2)
-            console.log(data2['Healthy life expectancy'])
-
-            var width = window.screen.availWidth*.45; // Width of the SVG element
-            var height = window.screen.availHeight*.45; // Height of the SVG element
-            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
-            const innerWidth = width - margin;
-            const innerHeight = height - margin;
-
-            var x = d3.scaleLinear().domain([1.9, 8]).range([0, width]);
-            var y = d3.scaleLinear().domain([0, 1]).range([height, 0])
-            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            // Create Tooltips
-            var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
-            .html(function(d) {
-                var content = "";
-                content +=                  
-                    'Country Name: ' + 
-                    d['Country name'] +
-                    "<br/>"  +
-                    'Happiness Score: ' + 
-                    d['Ladder score'] +
-                    "<br/>"  +
-                    'Life expectancy: ' + 
-                    d['Healthy life expectancy'] +
-                    "<br/>"  +
-                    'Freedom to make life choices: ' + 
-                    d['Freedom to make life choices'] +
-                    "<br/>";
-                return content;
-            });
-
-            var svg = d3.select("#sc3");
-
-            svg
-            .attr("width", width *1.2 + 2 * margin)
-            .attr("height", height + 2 * margin)
-            .append("g")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(tip)
-            .selectAll("circle")
-            .data(data2)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d, i) { return x(d['Ladder score']); })
-            .attr("cy", function (d, i) { return y(d['Social support']); })
-            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
-            //.attr("r", function (d, i) { return parseInt(1) + 20; })
-            .style("fill", function(d) {return color(d["Regional indicator"]);})
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide);
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(d3.axisLeft(y).tickValues([40, 50, 60, 70, 80]).tickSize(-width).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', -innerHeight / 1.8)
-            .attr('y', -60)
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle')
-            .text("Social support");
-
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-            .call(d3.axisBottom(x).tickValues([2, 4, 6, 8]).tickSize(-height).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', innerWidth / 1.8)
-            .attr('y', 100)
-            .text("Happiness Score");
-
-
-            var legend = svg.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .classed("legend", true)
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
-
-            legend.append("rect")
-            .attr("x", 1.15*width)
-            .attr("y", .5*height )
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", color)
-            .style("fill-opacity", 0.60);
-
-            legend.append("text")
-            .attr("x", 1.15* width + 25)
-            .attr("y", .5*height)
-            .attr("dy", ".70em")
-            .text(function(d) {
-            return d;}
-            );
-        }
+        
 
 
 
-        async function drawScatterPlotGeneric(metricToGraph, targetSVG, yLabel,xDomain, yDomain, xTicks, yTicks) {
-            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
-            const data2 = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
 
-
-            var width = window.screen.availWidth*.45; // Width of the SVG element
-            var height = window.screen.availHeight*.45; // Height of the SVG element
-            var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
-            const innerWidth = width - margin;
-            const innerHeight = height - margin;
-
-            xMax = d3.max(data2, function(d) {
-                return parseFloat(d['Ladder score']);
-            })
-
-            xMin = d3.min(data2, function(d) {
-                return parseFloat(d['Ladder score']);
-            })
-
-
-
-            yMax = d3.max(data2, function(d) {
-                return parseFloat(d[metricToGraph]);
-            })
-
-            yMin = d3.min(data2, function(d) {
-                return parseFloat(d[metricToGraph]);
-            })
-
-
-            //console.log(data2[metricToGraph])
-            console.log('Metric to graph: ' + metricToGraph);
-            console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
-
-            // var x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
-            // var y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0])
-            // var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
-
-            var x = d3.scaleLinear().domain(xDomain).range([0, width]);
-            var y = d3.scaleLinear().domain(yDomain).range([height, 0])
-            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
-            
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            // Create Tooltips
-            var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
-            .html(function(d) {
-                var content = "";
-                content +=                  
-                    'Country Name: ' + 
-                    d['Country name'] +
-                    "<br/>"  +
-                    'Happiness Score: ' + 
-                    d['Ladder score'] +
-                    "<br/>"  +
-                    'Life expectancy: ' + 
-                    d['Healthy life expectancy'] +
-                    "<br/>"  +
-                    'Freedom to make life choices: ' + 
-                    d['Freedom to make life choices'] +
-                    "<br/>";
-                return content;
-            });
-
-            var svg = d3.select(targetSVG);
-
-            svg
-            .attr("width", width *1.2 + 2 * margin)
-            .attr("height", height + 2 * margin)
-            .append("g")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(tip)
-            .selectAll("circle")
-            .data(data2)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d, i) { return x(d['Ladder score']); })
-            .attr("cy", function (d, i) { return y(d[metricToGraph]); })
-            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
-            //.attr("r", function (d, i) { return parseInt(1) + 20; })
-            .style("fill", function(d) {return color(d["Regional indicator"]);})
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide);
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', -innerHeight / 1.8)
-            .attr('y', -60)
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle')
-            .text(yLabel);
-
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-            .call(d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', innerWidth / 1.8)
-            .attr('y', 100)
-            .text("Happiness Score");
-
-
-            var legend = svg.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .classed("legend", true)
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
-
-            legend.append("rect")
-            .attr("x", 1.15*width)
-            .attr("y", .5*height )
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", color)
-            .style("fill-opacity", 0.60);
-
-            legend.append("text")
-            .attr("x", 1.15* width + 25)
-            .attr("y", .5*height)
-            .attr("dy", ".70em")
-            .text(function(d) {
-            return d;}
-            );
-        }
     </script>
 </body>
 
