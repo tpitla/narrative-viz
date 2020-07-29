@@ -286,6 +286,16 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         <svg id="sc2">
         </svg>
     </div>
+          <div class="charts">
+        <svg id="sc3">
+        </svg>
+    </div>
+
+  </div>
+  <div class="charts">
+<svg id="sc4">
+</svg>
+</div>
 
 
     <div class="parallax" id="parallax2">
@@ -309,10 +319,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
          </p>
             </div>
 
-      <!-- <div class="charts">
-        <svg id="sc3">
-        </svg>
-    </div> -->
+
 
 
 
@@ -397,6 +404,13 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], [-.3,.7],[2, 4, 6, 8], [-0.25, 0, 0.25, 0.50])
 
             await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'Logged GDP per capita',[39,80], [6,12],[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social support',[39,80], [0.25,1],[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+
+       
+
+            await drawScatterPlotGeneric(data,'#sc3', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], [0,1],[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+
+            await drawScatterPlotGeneric(data,'#sc4', 'Generosity', 'Generosity',[39,80], [-.35,.6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
             // await drawScatterPlot();
             // await drawScatterPlot2();
