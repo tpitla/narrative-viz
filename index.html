@@ -388,14 +388,15 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
 
 
-            await drawScatterPlotGeneric(data, 'Healthy life expectancy', '#s1', 'Life Expectancy',[1.9, 8], [40,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
-            await drawScatterPlotGeneric(data, 'Perceptions of corruption', '#s2', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0, 0.25, 0.50, 0.75, 1])
-            await drawScatterPlotGeneric(data, 'Freedom to make life choices', '#s3', 'Freedom to Make Life Choices',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
+            await drawScatterPlotGeneric(data,'#s1', 'Healthy life expectancy', 'Life Expectancy',[1.9, 8], [40,80], [2, 4, 6, 8], [40, 50, 60, 70, 80])
+            await drawScatterPlotGeneric(data,'#s2', 'Perceptions of corruption', 'Perceptions of Corruption',[1.9, 8], [0,1], [2, 4, 6, 8],  [0, 0.25, 0.50, 0.75, 1])
+            await drawScatterPlotGeneric(data,'#s3', 'Freedom to make life choices', 'Freedom to Make Life Choices',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
 
-            await drawScatterPlotGeneric(data, 'Social support', '#s4', 'Social Support',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
-            await drawScatterPlotGeneric(data, 'Logged GDP per capita', '#s5', 'Logged GDP per capita',[1.9, 8], [6,11],[2, 4, 6, 8], [6, 8, 10,12])
-            await drawScatterPlotGeneric(data, 'Generosity', '#s6', 'Generosity',[1.9, 8], [-.3,.7],[2, 4, 6, 8], [-0.25, 0, 0.25, 0.50])
+            await drawScatterPlotGeneric(data,'#s4', 'Social support', 'Social Support',[1.9, 8], [0.25,1],[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
+            await drawScatterPlotGeneric(data,'#s5', 'Logged GDP per capita', 'Logged GDP per capita',[1.9, 8], [6,11],[2, 4, 6, 8], [6, 8, 10,12])
+            await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], [-.3,.7],[2, 4, 6, 8], [-0.25, 0, 0.25, 0.50])
 
+            await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'Logged GDP per capita',[39,80], [6,12],[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
             // await drawScatterPlot();
             // await drawScatterPlot2();
@@ -431,7 +432,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         }
 
 
-        async function drawScatterPlotGeneric(data, metricToGraph, targetSVG, yLabel,xDomain, yDomain, xTicks, yTicks) {
+        async function drawScatterPlotGeneric(data, targetSVG, metricToGraph, yLabel, xDomain, yDomain, xTicks, yTicks,  xMetric='Ladder score', xLabel='Happiness Score') {
 
         
             var width = window.screen.availWidth*.45; // Width of the SVG element
@@ -503,7 +504,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", function (d, i) { return x(d['Ladder score']); })
+            .attr("cx", function (d, i) { return x(d[xMetric]); })
             .attr("cy", function (d, i) { return y(d[metricToGraph]); })
             .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
             //.attr("r", function (d, i) { return parseInt(1) + 20; })
@@ -532,7 +533,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .attr('class', 'axis-label')
             .attr('x', innerWidth / 1.8)
             .attr('y', 100)
-            .text("Happiness Score");
+            .text(xLabel);
 
 
             var legend = svg.selectAll(".legend")
