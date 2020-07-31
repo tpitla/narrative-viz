@@ -236,6 +236,60 @@ img {vertical-align: middle;}
 
 
 
+
+
+
+
+
+
+
+
+
+.select-css {
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #444;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 20%;
+	max-width: 20%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
+}
+
+
+
+
 </style>
 
 <body onload='init()'>
@@ -336,6 +390,16 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         <div class="slideshow-container charts">
 
+          <select id="areaSelection" class="select-css">
+            <option value="Ladder score">Happiness Score</option>
+            <option value="Healthy life expectancy">Life Expectancy</option>
+            <option value="Perceptions of corruption">Perceptions of Corruption</option>
+            <option value="Freedom to make life choices">Freedom to Make Life Choices</option>
+            <option value="Social support">Social Support</option>
+            <option value="Logged GDP per capita">GDP Per Capita Score</option>
+            <option value="Generosity">Generosity</option>
+          </select>
+
             <div class="mySlides fade charts">
               <svg id="s1" class="svgChart"></svg>
             </div>
@@ -362,6 +426,9 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+
+
             
             </div>
 
@@ -404,10 +471,52 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         var gdp_score_domain = [6,12];
         var generosity_domain =  [-.35,.6]; //-.35, .6?
 
+        var data;
+
+        function getDomain(rmetric){
+          switch(rmetric) {
+            case "Healthy life expectancy":
+              return life_exp_domain;
+            case "Perceptions of corruption":
+              return percp_corrup_domain;
+            case "Freedom to make life choices":
+              return frdm_life_choices_domain;
+            case "Social support":
+              return social_supp_domain;
+            case "Logged GDP per capita":
+              return gdp_score_domain;
+            case "Generosity":
+              return generosity_domain;
+            case "Ladder score":
+              return happiness_score_domain;
+            default:
+              return happiness_score_domain;
+          }
+        }
+
+
+
+        d3.select("#areaSelection").on("change", function(d) {
+            renderSlideShow(d3.select(this).property('value'))
+        })
+
+        function renderSlideShow(rMetric){
+          rDomain = getDomain(rMetric);
+          console.log(rDomain);
+          var r = d3.scaleLinear().domain(rDomain).range([3, 25])
+
+          d3.select('.slideshow-container').selectAll('circle')
+          .data(data)
+          .transition().duration(500).delay(function(d,i) {return(i-1)*25 + 30;})
+          .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
+
+        }
 
         async function init() {
+
+            data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
             //const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/cars2017.csv");
-            const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
+            
             //const data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv"); 
 
 
@@ -425,13 +534,13 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             await drawScatterPlotGeneric(data,'#s5', 'Logged GDP per capita', 'GDP Per Capita Score',[1.9, 8], gdp_score_domain,[2, 4, 6, 8], [6, 8, 10,12])
             await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], generosity_domain,[2, 4, 6, 8], [-0.35, 0, 0.25, 0.4, 0.6])
 
+
+
+
             await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'GDP Per Capita Score',[39,80], gdp_score_domain,[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
             await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social support',[39,80], social_supp_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
-       
-
             await drawScatterPlotGeneric(data,'#sc3', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-
             await drawScatterPlotGeneric(data,'#sc4', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
             await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
@@ -471,7 +580,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         }
 
 
-        async function drawScatterPlotGeneric(data, targetSVG, metricToGraph, yLabel, xDomain, yDomain, xTicks, yTicks,  xMetric='Ladder score', xLabel='Happiness Score') {
+        async function drawScatterPlotGeneric(data, targetSVG, metricToGraph, yLabel, xDomain, yDomain, xTicks, yTicks,  xMetric='Ladder score', xLabel='Happiness Score', rMetric='Ladder score', rDomain=happiness_score_domain ) {
 
         
             var width = window.screen.availWidth*.45; // Width of the SVG element
@@ -507,7 +616,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
             var x = d3.scaleLinear().domain(xDomain).range([0, width]);
             var y = d3.scaleLinear().domain(yDomain).range([height, 0])
-            var r = d3.scaleLinear().domain(happiness_score_domain).range([3, 25])
+            var r = d3.scaleLinear().domain(rDomain).range([3, 25])
             
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -528,7 +637,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .append("circle")
             .attr("cx", function (d, i) { return x(d[xMetric]); })
             .attr("cy", function (d, i) { return y(d[metricToGraph]); })
-            .attr("r", function (d, i) { return r(parseFloat(d['Ladder score'])); })
+            .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
             //.attr("r", function (d, i) { return parseInt(1) + 20; })
             .style("fill", function(d) {return color(d["Regional indicator"]);})
             .on('mouseover', tip.show)
@@ -642,7 +751,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         var svg = d3.select(targetSVG);
 
         svg
-        .attr("width", width *1.4 + 2 * margin)
+        .attr("width", width *1.2 + 2 * margin)
         .attr("height", height*3 + margin)
         .append("g")
         .attr("transform", "translate(" + margin + "," + margin/3 + ")")
