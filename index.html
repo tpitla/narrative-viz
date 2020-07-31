@@ -55,6 +55,11 @@
         padding: 20px;
     }
 
+    .svgChart{
+      display: block;
+      margin: 0 auto;
+    }
+
     .parallax {
     /* Full height */
     
@@ -261,12 +266,12 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
 
     <div class="charts">
-      <svg id="sc0">
+      <svg id="sc0" class="svgChart">
       </svg>
   </div>
 
     <div class="charts">
-        <svg id="sc1">
+        <svg id="sc1" class="svgChart">
         </svg>
     </div>
 
@@ -289,17 +294,17 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             </div>
 
       <div class="charts">
-        <svg id="sc2">
+        <svg id="sc2" class="svgChart">
         </svg>
     </div>
           <div class="charts">
-        <svg id="sc3">
+        <svg id="sc3" class="svgChart">
         </svg>
     </div>
 
   </div>
   <div class="charts">
-<svg id="sc4">
+<svg id="sc4" class="svgChart">
 </svg>
 </div>
 
@@ -332,27 +337,27 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         <div class="slideshow-container charts">
 
             <div class="mySlides fade charts">
-              <svg id="s1"></svg>
+              <svg id="s1" class="svgChart"></svg>
             </div>
             
             <div class="mySlides fade charts">
-              <svg id="s2"></svg>
+              <svg id="s2" class="svgChart"></svg>
             </div>
             
             <div class="mySlides fade charts">
-              <svg id="s3"></svg>
+              <svg id="s3" class="svgChart"></svg>
             </div>
 
             <div class="mySlides fade charts">
-                <svg id="s4"></svg>
+                <svg id="s4" class="svgChart"></svg>
               </div>
 
               <div class="mySlides fade charts">
-                <svg id="s5"></svg>
+                <svg id="s5" class="svgChart"></svg>
               </div>
 
               <div class="mySlides fade charts">
-                <svg id="s6"></svg>
+                <svg id="s6" class="svgChart"></svg>
               </div>
             
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -589,7 +594,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         var width = window.screen.availWidth*.45; // Width of the SVG element
         var height = window.screen.availHeight*.45; // Height of the SVG element
-        var margin = window.screen.availHeight*.10; // Margin that will be used inside the SVG element
+        var margin = window.screen.availHeight*.25; // Margin that will be used inside the SVG element
         const innerWidth = width - margin;
         const innerHeight = height - margin;
 
@@ -726,16 +731,16 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         });
 
         legend.append("rect")
-        .attr("x", 1.15*width)
-        .attr("y", .5*height )
+        .attr("x",1.3*width)
+        .attr("y", .9*height )
         .attr("width", 15)
         .attr("height", 15)
         .style("fill", color)
         .style("fill-opacity", 0.60);
 
         legend.append("text")
-        .attr("x", 1.15* width + 25)
-        .attr("y", .5*height)
+        .attr("x", 1.3* width + 25)
+        .attr("y", .9*height)
         .attr("dy", ".70em")
         .text(function(d) {
         return d;}
