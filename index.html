@@ -390,6 +390,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         <div class="slideshow-container charts">
 
+          <label>Area Variable:</label>
           <select id="areaSelection" class="select-css">
             <option value="Ladder score">Happiness Score</option>
             <option value="Healthy life expectancy">Life Expectancy</option>
@@ -508,7 +509,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
           d3.selectAll('.mySlides circle')
           .data(data)
-          .transition().duration(500).delay(function(d,i) {return(i)*15 + 25;})
+          .transition().duration(250).delay(function(d,i) {return(i)*10 + 20;})
           .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
 
         }
