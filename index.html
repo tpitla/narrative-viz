@@ -506,9 +506,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
           console.log(rDomain);
           var r = d3.scaleLinear().domain(rDomain).range([3, 25])
 
-          var all_charts = d3.selectAll('.mySlides')
-
-          d3.selectAll('.mySlides').selectAll('circle')
+          d3.selectAll('.mySlides circle')
           .data(data)
           .transition().duration(500).delay(function(d,i) {return(i)*15 + 25;})
           .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
