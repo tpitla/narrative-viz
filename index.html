@@ -400,6 +400,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             <option value="Generosity">Generosity</option>
           </select>
 
+
             <div class="mySlides fade charts">
               <svg id="s1" class="svgChart"></svg>
             </div>
@@ -407,7 +408,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             <div class="mySlides fade charts">
               <svg id="s2" class="svgChart"></svg>
             </div>
-            
+  
             <div class="mySlides fade charts">
               <svg id="s3" class="svgChart"></svg>
             </div>
@@ -505,9 +506,11 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
           console.log(rDomain);
           var r = d3.scaleLinear().domain(rDomain).range([3, 25])
 
-          d3.select('.slideshow-container').selectAll('circle')
+          var all_charts = d3.selectAll('.mySlides')
+
+          d3.selectAll('.mySlides').selectAll('circle')
           .data(data)
-          .transition().duration(500).delay(function(d,i) {return(i-1)*25 + 30;})
+          .transition().duration(500).delay(function(d,i) {return(i)*15 + 25;})
           .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
 
         }
