@@ -396,13 +396,13 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
     <script>
 
 
-
-        var life_exp_domain = [40,80];
+        var happiness_score_domain = [1.9,8];
+        var life_exp_domain = [40,80]; // 39, 80?
         var percp_corrup_domain = [0,1];
         var frdm_life_choices_domain = [0.25,1];
         var social_supp_domain = [0.25,1];
         var gdp_score_domain = [6,12];
-        var generosity_domain =  [-.3,.7]; //-.35, .6?
+        var generosity_domain =  [-.35,.6]; //-.35, .6?
 
 
         async function init() {
@@ -423,7 +423,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
             await drawScatterPlotGeneric(data,'#s4', 'Social support', 'Social Support',[1.9, 8], social_supp_domain,[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
             await drawScatterPlotGeneric(data,'#s5', 'Logged GDP per capita', 'GDP Per Capita Score',[1.9, 8], gdp_score_domain,[2, 4, 6, 8], [6, 8, 10,12])
-            await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], generosity_domain,[2, 4, 6, 8], [-0.25, 0, 0.25, 0.50])
+            await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], generosity_domain,[2, 4, 6, 8], [-0.35, 0, 0.25, 0.4, 0.6])
 
             await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'GDP Per Capita Score',[39,80], gdp_score_domain,[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
             await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social support',[39,80], social_supp_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
@@ -432,7 +432,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
             await drawScatterPlotGeneric(data,'#sc3', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
-            await drawScatterPlotGeneric(data,'#sc4', 'Generosity', 'Generosity Score',generosity_domain, [-.35,.6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc4', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
             await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
 
@@ -507,7 +507,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
             var x = d3.scaleLinear().domain(xDomain).range([0, width]);
             var y = d3.scaleLinear().domain(yDomain).range([height, 0])
-            var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+            var r = d3.scaleLinear().domain(happiness_score_domain).range([3, 25])
             
             var color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -528,7 +528,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             .append("circle")
             .attr("cx", function (d, i) { return x(d[xMetric]); })
             .attr("cy", function (d, i) { return y(d[metricToGraph]); })
-            .attr("r", function (d, i) { return r(parseFloat(d['Freedom to make life choices'])); })
+            .attr("r", function (d, i) { return r(parseFloat(d['Ladder score'])); })
             //.attr("r", function (d, i) { return parseInt(1) + 20; })
             .style("fill", function(d) {return color(d["Regional indicator"]);})
             .on('mouseover', tip.show)
