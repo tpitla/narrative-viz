@@ -659,9 +659,9 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         svg
         .attr("width", width *1.4 + 2 * margin)
-        .attr("height", height * 1.2 + 2 * margin)
+        .attr("height", height + margin/2)
         .append("g")
-        .attr("transform", "translate(" + margin + "," + margin + ")")
+        .attr("transform", "translate(" + margin + "," + margin/6 + ")")
         .call(tip)
         .selectAll("rect")
         .data(data)
@@ -711,13 +711,13 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
           // add the x Axis
         svg.append("g")
-            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+            .attr("transform", "translate(" + margin + "," + (height + margin/6) + ")")
             .call(d3.axisBottom(x))
 
 
         // add the y Axis
         svg.append("g")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .attr("transform", "translate(" + margin + "," + margin/6 + ")")
             .call(d3.axisLeft(y))
 
 
