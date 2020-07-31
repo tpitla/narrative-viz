@@ -614,7 +614,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
             return parseFloat(d[metricToGraph]);
         })
 
-        data = data.slice(0, 18);
+        data = data.slice(0, 50);
         //console.log(data2[metricToGraph])
         console.log('Metric to graph: ' + metricToGraph);
         console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
@@ -627,7 +627,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         //var y = d3.scaleLinear().domain(yDomain).range([0, height])
         var y = d3.scaleBand()
           .domain(data.map(function(d) { return d['Country name']; }))
-          .range([0, height])
+          .range([0, height*3])
           //.padding(0.1);
 
         //y.domain(data.map(function(d) { return d['Country name']; }));
@@ -659,7 +659,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         svg
         .attr("width", width *1.4 + 2 * margin)
-        .attr("height", height + margin/2)
+        .attr("height", height*3 + margin/2)
         .append("g")
         .attr("transform", "translate(" + margin + "," + margin/6 + ")")
         .call(tip)
@@ -670,7 +670,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
           .attr('x',10)
           .attr('y',function(d,i) {return y(d['Country name']);})
           .attr('width',function(d,i) {return x(d[xMetric]);})
-          .attr('height',height * .05)
+          .attr('height',y.bandwidth()*.95)
         .style("fill", function(d) {return color(d["Regional indicator"]);})
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
@@ -711,7 +711,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
           // add the x Axis
         svg.append("g")
-            .attr("transform", "translate(" + margin + "," + (height + margin/6) + ")")
+            .attr("transform", "translate(" + margin + "," + (height*3 + margin/6) + ")")
             .call(d3.axisBottom(x))
 
 
