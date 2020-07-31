@@ -662,10 +662,10 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         .data(data)
         .enter()
         .append('rect')
-          .attr('x',20)
+          .attr('x',10)
           .attr('y',function(d,i) {return y(d['Country name']);})
           .attr('width',function(d,i) {return x(d[xMetric]);})
-          .attr('height',height * .04)
+          .attr('height',height * .05)
         .style("fill", function(d) {return color(d["Regional indicator"]);})
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
@@ -680,28 +680,41 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         // .on('mouseover', tip.show)
         // .on('mouseout', tip.hide);
 
-        svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(" + margin + "," + margin + ")")
-        .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~r")))
-        .append("text")
-        .attr('class', 'axis-label')
-        .attr('x', -innerHeight / 1.8)
-        .attr('y', -60)
-        .attr('transform', `rotate(-90)`)
-        .style('text-anchor', 'middle')
-        .text(yLabel);
+        // svg.append("g")
+        // .attr("class", "grid")
+        // .attr("transform", "translate(" + margin + "," + margin + ")")
+        // .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~r")))
+        // .append("text")
+        // .attr('class', 'axis-label')
+        // .attr('x', -innerHeight / 1.8)
+        // .attr('y', -60)
+        // .attr('transform', `rotate(-90)`)
+        // .style('text-anchor', 'middle')
+        // .text(yLabel);
 
 
+        // svg.append("g")
+        // .attr("class", "grid")
+        // .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+        // .call(d3.axisBottom(x).tickValues([]).tickSize(-height).tickFormat(d3.format("~s")))
+        // .append("text")
+        // .attr('class', 'axis-label')
+        // .attr('x', innerWidth / 1.8)
+        // .attr('y', 100)
+        // .text(xLabel);
+
+
+          // add the x Axis
         svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-        .call(d3.axisBottom(x).tickValues([]).tickSize(-height).tickFormat(d3.format("~s")))
-        .append("text")
-        .attr('class', 'axis-label')
-        .attr('x', innerWidth / 1.8)
-        .attr('y', 100)
-        .text(xLabel);
+            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+            .call(d3.axisBottom(x))
+
+
+        // add the y Axis
+        svg.append("g")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
+            .call(d3.axisLeft(y))
+
 
 
         var legend = svg.selectAll(".legend")
