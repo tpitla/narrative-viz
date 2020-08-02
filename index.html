@@ -3,351 +3,396 @@
 <script src="d3-tip.js"></script>
 <script src="d3-annotation.js"></script>
 <style>
-
-    body, html {
+  body,
+  html {
     height: 100%;
     margin: 0;
     font: 400 15px/1.8 "Lato", sans-serif;
     color: #777;
-    }
+  }
 
-    circle {
-        fill-opacity: .60;
-    }
+  circle {
+    fill-opacity: .60;
+  }
 
-    body {
-        margin: 0px;
-    }
+  body {
+    margin: 0px;
+  }
 
-    .tick {
-        font-size: 12;
-    }
+  * {
+    box-sizing: border-box
+  }
 
-    .d3-tip {
-      color: #fff;
-      border-radius: 4px;
-      font-size: 16px;
-      line-height: 1;
-      padding: 8px;
-      background: rgba(0, 0, 0, 0.7);
+  .tick {
+    font-size: 12;
+  }
 
-    }
+  .d3-tip {
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.7);
 
-    .grid line {
+  }
+
+  .grid line {
     stroke: lightgrey;
     stroke-opacity: 0.6;
     shape-rendering: crispEdges;
-    }
+  }
 
-    .grid path {
+  .grid path {
     stroke-width: 0;
-    }
+  }
 
-    .charts {
-        width: 85%;
-        margin: 0 auto;
-        padding: 20px;
-    }
+  .charts {
+    width: 85%;
+    margin: 0 auto;
+    padding: 20px;
+  }
 
-    .svgChart{
-      display: block;
-      margin: 0 auto;
-    }
+  .svgChart {
+    display: block;
+    margin: 0 auto;
+  }
 
 
-    /* Adapted from https://www.w3schools.com/howto/howto_css_parallax.asp */
-    .parallax {
+  /* Adapted from https://www.w3schools.com/howto/howto_css_parallax.asp */
+  .parallax {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    }
+  }
 
 
-    #parallax1 {
+  #parallax1 {
     opacity: 0.65;
     background-image: url("sb2.jpg");
     height: 100%;
-    }
+  }
 
 
-    #parallax2 {
+  #parallax2 {
     opacity: 0.80;
     background-image: url("wine2.jpg");
     height: 50%;
-    }
+  }
 
-    #parallax3 {
+  #parallax3 {
     opacity: 0.65;
     background-image: url("sunset2.jpg");
     height: 50%;
-    }
+  }
 
-    #parallax4 {
+  #parallax4 {
     opacity: 0.65;
     background-image: url("electric2.jpg");
     height: 50%;
-    }
+  }
 
-    #parallax5 {
+  #parallax5 {
     opacity: 0.65;
     background-image: url("plane2.jpg");
     height: 50%;
     min-height: 100%;
-    }
+  }
 
-    .titleBox {
-        color:#ddd;
-        background-color:#282E34;
-        text-align:center;
-        padding:5px 80px;
-        text-align: justify;
-    }
+  .titleBox {
+    color: #ddd;
+    background-color: #282E34;
+    text-align: center;
+    padding: 5px 80px;
+    text-align: justify;
+  }
 
-    .textContent  {
-        color: #777;
-        background-color: white;
-        text-align: center;
-        padding: 50px 30px;
-        text-align: justify;
-    }
+  .textContent {
+    color: #777;
+    background-color: white;
+    text-align: center;
+    padding: 50px 30px;
+    text-align: justify;
+  }
 
-    .textContent p {
+  .textContent p {
     text-align: center;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
-    }
-
-
-    .textContent h3 {
-      padding-bottom: 40px;
-    }
-
-h3 {
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
-  color: #111;
-  text-align: center;
-  font-size: 28;
-}
-
-.axis-label {
-        fill: black;
-        font-size: 20;
-        font: 14px "Lato", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-    }
-
-.chartTitle {
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font: 16px "Lato", sans-serif;
-  color: #111;
-  text-align: center;
-  font-size: 14pt;
-}
-.caption {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 100%;
-        text-align: center;
-        color: #000;
-    }
-
-  .caption span.border {
-      background-color: rgb(0, 0, 0);
-      color: #fff;
-      padding: 18px;
-      font-size: 25px;
-      letter-spacing: 10px;
-      text-transform: uppercase;
-      font: 20px "Lato", sans-serif;
   }
 
 
-/*Adapted from https://www.w3schools.com/howto/howto_js_slideshow.asp*/
-.slideshow-container {
-  position: relative;
-  margin: auto;
-}
+  .textContent h3 {
+    padding-bottom: 40px;
+  }
 
-.previous, .next {
-  border-radius: 0 4px 4px 0;
-  user-select: none;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  cursor: pointer;
-  position: absolute;
-  margin-top: -22px;
-  color: black;
-}
+  h3 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font: 20px "Lato", sans-serif;
+    color: #111;
+    text-align: center;
+    font-size: 28;
+  }
 
-.next {
-  border-radius: 4px 0 0 4px;
-  right: 0;
-}
+  .axis-label {
+    fill: black;
+    font-size: 20;
+    font: 14px "Lato", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
 
-.previous:hover, .next:hover {
-  background-color: rgba(48, 43, 43, 0.8);
-}
+  .chartTitle {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font: 16px "Lato", sans-serif;
+    color: #111;
+    text-align: center;
+    font-size: 14pt;
+  }
 
-.positionIndicator {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
+  .caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
 
-.active, .positionIndicator:hover {
-  background-color: #717171;
-}
+  .caption span.border {
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    font: 20px "Lato", sans-serif;
+  }
 
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 2s;
-  animation-name: fade;
-  animation-duration: 2s;
-}
 
-@-webkit-keyframes fade {
-  from {opacity: .3} 
-  to {opacity: 1}
-}
+  /*Adapted from https://www.w3schools.com/howto/howto_js_slideshow.asp*/
+  .slideshow-container {
+    position: relative;
+    margin: auto;
+  }
 
-@keyframes fade {
-  from {opacity: .3} 
-  to {opacity: 1}
-}
+  .next,
+  .previous {
+    cursor: pointer;
+    position: absolute;
+    margin-top: -22px;
+    color: black;
 
-* {box-sizing: border-box}
+    border-radius: 0 4px 4px 0;
+    user-select: none;
+    font-weight: bold;
+    font-size: 28px;
+    transition: 0.6s ease;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+  }
 
-.interactiveCharts {display: none}
-img {vertical-align: middle;}
+  .next {
+    border-radius: 4px 0 0 4px;
+    right: 0;
+  }
 
-/*Adapted from https://www.filamentgroup.com/lab/select-css.html*/
-.select-css {
-	display: block;
-	font-size: 16px;
-	font-family: sans-serif;
-	font-weight: 700;
-	color: #444;
-	line-height: 1.3;
-	padding: .6em 1.4em .5em .8em;
-	width: auto;
-	max-width: 20%;
-	box-sizing: border-box;
-	margin: 0;
-	border: 1px solid #aaa;
-	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
-	border-radius: .5em;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none;
-	background-color: #fff;
-	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
-	background-repeat: no-repeat, repeat;
-	background-position: right .7em top 50%, 0 0;
-	background-size: .65em auto, 100%;
-}
-.select-css::-ms-expand {
-	display: none;
-}
-.select-css:hover {
-	border-color: #888;
-}
-.select-css:focus {
-	border-color: #aaa;
-	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
-	box-shadow: 0 0 0 3px -moz-mac-focusring;
-	color: #222;
-	outline: none;
-}
-.select-css option {
-	font-weight:normal;
-}
+  .previous:hover,
+  .next:hover {
+    background-color: rgba(48, 43, 43, 0.8);
+  }
+
+  .positionIndicator {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active,
+  .positionIndicator:hover {
+    background-color: #717171;
+  }
+
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2s;
+    animation-name: fade;
+    animation-duration: 2s;
+  }
+
+  @-webkit-keyframes fade {
+    from {
+      opacity: .3
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: .3
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+  .interactiveCharts {
+    display: none
+  }
+
+  img {
+    vertical-align: middle;
+  }
+
+  /*Adapted from https://www.filamentgroup.com/lab/select-css.html*/
+  .areaVarSelector {
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+      linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+
+    display: block;
+    font-size: 17px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.4;
+    padding: .6em 1.4em .5em .8em;
+    width: auto;
+    max-width: 20%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 2px solid #aaa;
+    box-shadow: 0 2px 0 2px rgba(0, 0, 0, .04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+  }
+
+  .areaVarSelector:focus {
+    border-color: rgb(170, 166, 166);
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+
+  .areaVarSelector::-ms-expand {
+    display: none;
+  }
+
+  .areaVarSelector:hover {
+    border-color: rgb(131, 127, 127);
+  }
+
+  .areaVarSelector option {
+    font-weight: normal;
+  }
 </style>
+
 <head>
   <title>World Happiness Visualization</title>
 </head>
+
 <body onload='init()'>
-    <div id="main">
+  <div id="main">
     <div class="parallax" id="parallax1">
-        <div class="caption">
-            <span class="border">World Happiness Report 2020 - A Narrative Visualization</span>
-        </div>
+      <div class="caption">
+        <span class="border">World Happiness Report 2020 - A Narrative Visualization</span>
+      </div>
     </div>
 
-      <div style="position:relative;">
-        <div class="titleBox">
-          <h3 style="color:white;">The Happiest Countries On Earth</h3>
-        </div>
+    <div style="position:relative;">
+      <div class="titleBox">
+        <h3 style="color:white;">The Happiest Countries On Earth</h3>
       </div>
+    </div>
 
     <div class="textContent">
       <h3>Overview</h3>
-<p>
-  The United Nations Sustainable Development Solutions Network publishes an annual <a href="https://worldhappiness.report/">report</a> that ranks 156 countries on their inhabitant’s perceived happiness. The data originates from a variety of sources with the primary one being the Gallup World Poll. Below we see a subset of the world happiness ranking from the report.
- </p>
+      <p>
+        The United Nations Sustainable Development Solutions Network publishes an annual <a
+          href="https://worldhappiness.report/">report</a> that ranks 156 countries on their inhabitant’s perceived
+        happiness. The data originates from a variety of sources with the primary one being the Gallup World Poll. Below
+        we see a subset of the world happiness ranking from the report.
+      </p>
     </div>
     <div class="charts">
       <svg id="sc0" class="svgChart">
       </svg>
-  </div>
+    </div>
 
-  <div class="textContent">
-<p>
-  The rankings and cumulative happiness scores are based on at least 6 other independent variables: GDP Per capita, Social support, Healthy life expectancy at birth, Freedom to make life choices, Generosity and Perceptions of corruption. It is instructive to study how these factors relate with each other and the overall happiness score.</p>
-  </div>
+    <div class="textContent">
+      <p>
+        The rankings and cumulative happiness scores are based on at least 6 other independent variables: GDP Per
+        capita, Social support, Healthy life expectancy at birth, Freedom to make life choices, Generosity and
+        Perceptions of corruption. It is instructive to study how these factors relate with each other and the overall
+        happiness score.</p>
+    </div>
     <div class="parallax" id="parallax3">
     </div>
 
     <div style="position:relative;">
-        <div class="titleBox">
-          <h3 style="color:white;">Happiness Factors</h3>
-        </div>
+      <div class="titleBox">
+        <h3 style="color:white;">Happiness Factors</h3>
       </div>
-      <div class="textContent"><h3>Social Support, Per Capita GDP and Life Expectancy</h3>
-        <p>
-          We can look at the relations between social support, per capita GDP and life expectancy and see that there appears to be a strong correlation between all three and with perceived happiness. This suggests that countries that are strong in one of these factors tend to be strong in the others as well, Strong and weak results in these categories tend to occur together. 
-         </p>
+    </div>
+    <div class="textContent">
+      <h3>Social Support, Per Capita GDP and Life Expectancy</h3>
+      <p>
+        We can look at the relations between social support, per capita GDP and life expectancy and see that there
+        appears to be a strong correlation between all three and with perceived happiness. This suggests that countries
+        that are strong in one of these factors tend to be strong in the others as well, Strong and weak results in
+        these categories tend to occur together.
+      </p>
 
-         <p>The colored coded regions in these charts makes it abundantly clear that the wealthiest parts of world (Western Europe, North America, etc.) perform the best on these measures and the impoverished areas tend to score more poorly.</p>
+      <p>The colored coded regions in these charts makes it abundantly clear that the wealthiest parts of world (Western
+        Europe, North America, etc.) perform the best on these measures and the impoverished areas tend to score more
+        poorly.</p>
 
-            </div>
-            <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
-<p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p> </div>
-        <div class="charts">
-          <svg id="sc1" class="svgChart">
-          </svg>
-      </div>
+    </div>
+    <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
+      <p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p>
+    </div>
+    <div class="charts">
+      <svg id="sc1" class="svgChart">
+      </svg>
+    </div>
 
-      <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
-        <p>Life expectancy and social support tend to climb together indicating a linear relationship. The area of the points tend to increase towards the top right which suggests that percieved happiness is higher with higher life expectancies and greater social support. We see similar patterns in the next two charts</p>
-       
-      </div>
+    <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+      <p>Life expectancy and social support tend to climb together indicating a linear relationship. The area of the
+        points tend to increase towards the top right which suggests that percieved happiness is higher with higher life
+        expectancies and greater social support. We see similar patterns in the next two charts</p>
 
-      <div class="charts">
-        <svg id="sc2" class="svgChart">
-        </svg>
     </div>
 
     <div class="charts">
-        <svg id="sc3" class="svgChart">
-        </svg>
+      <svg id="sc2" class="svgChart">
+      </svg>
+    </div>
+
+    <div class="charts">
+      <svg id="sc3" class="svgChart">
+      </svg>
     </div>
 
 
@@ -355,501 +400,519 @@ img {vertical-align: middle;}
     </div>
 
     <div style="position:relative;">
-        <div class="titleBox">
-          <h3 style="color:white;">Additional Happiness Factors</h3>
-        </div>
+      <div class="titleBox">
+        <h3 style="color:white;">Additional Happiness Factors</h3>
       </div>
+    </div>
 
-    <div class="textContent" style="padding: 0px; padding-top: 50px;"><h3>Corruption, Generosity and Freedom</h3>
+    <div class="textContent" style="padding: 0px; padding-top: 50px;">
+      <h3>Corruption, Generosity and Freedom</h3>
       <p>
-        The World Happiness Report data identifies Perceptions of corruption, Generosity and the Freedom to make life choices as generally being a smaller factor than the first three in contributing to overall feelings of happiness. Generosity is based on the self-reported frequency of charity donations. Perceptions of corruption and Freedom to make life choices scores are based on survey questions designed to measure public opinion on the topics. 
-       </p>
-       <p>
-        The associations between these factors and our previously discussed ones and happiness is more subtle, there are no well defined strong correlations here.
-       </p>
- </div>
- <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
-  <p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p> </div>
+        The World Happiness Report data identifies Perceptions of corruption, Generosity and the Freedom to make life
+        choices as generally being a smaller factor than the first three in contributing to overall feelings of
+        happiness. Generosity is based on the self-reported frequency of charity donations. Perceptions of corruption
+        and Freedom to make life choices scores are based on survey questions designed to measure public opinion on the
+        topics.
+      </p>
+      <p>
+        The associations between these factors and our previously discussed ones and happiness is more subtle, there are
+        no well defined strong correlations here.
+      </p>
+    </div>
+    <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
+      <p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p>
+    </div>
 
-  <div class="charts">
-    <svg id="sc4" class="svgChart">
-    </svg>
-  </div>
+    <div class="charts">
+      <svg id="sc4" class="svgChart">
+      </svg>
+    </div>
 
-  <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
-    <p>Countries that report highs levels of perceived corruption can range from the poorest to the wealthiest and unhappiest to happiest, however the countries that report low levels of corruption are almost exclusively well developed, wealthy, healthy and happy nations.</p>
-   
-  </div>
+    <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+      <p>Countries that report highs levels of perceived corruption can range from the poorest to the wealthiest and
+        unhappiest to happiest, however the countries that report low levels of corruption are almost exclusively well
+        developed, wealthy, healthy and happy nations.</p>
 
-  <div class="charts">
-    <svg id="sc5" class="svgChart">
-    </svg>
-  </div>
-      <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
-        <p>The countries that score the highest on Generosity fall more in the middle of the pack on other measures. There are many instances of the unhappiest and the happiest places having similar levels of Generosity</p>
-       
-      </div>
-  
-  <div class="charts">
-    <svg id="sc6" class="svgChart">
-    </svg>
-  </div>
+    </div>
 
-  <div class="charts">
-    <svg id="sc7" class="svgChart">
-    </svg>
-  </div>
+    <div class="charts">
+      <svg id="sc5" class="svgChart">
+      </svg>
+    </div>
+    <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+      <p>The countries that score the highest on Generosity fall more in the middle of the pack on other measures. There
+        are many instances of the unhappiest and the happiest places having similar levels of Generosity</p>
 
-  <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
-    <p>Higher degrees of perceived freedom appears to correspond with stronger general measures of development (per capita GDP, life expectency, etc.) and greater happiness but this association is somewhat weaker than the three primary factors from the previous section.</p>
-  </div>
+    </div>
+
+    <div class="charts">
+      <svg id="sc6" class="svgChart">
+      </svg>
+    </div>
+
+    <div class="charts">
+      <svg id="sc7" class="svgChart">
+      </svg>
+    </div>
+
+    <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+      <p>Higher degrees of perceived freedom appears to correspond with stronger general measures of development (per
+        capita GDP, life expectency, etc.) and greater happiness but this association is somewhat weaker than the three
+        primary factors from the previous section.</p>
+    </div>
 
     <div class="parallax" id="parallax2">
     </div>
 
     <div style="position:relative;">
-        <div class="titleBox">
-          <h3 style="color:white;">Explore The World Happiness Dataset</h3>
-        </div>
+      <div class="titleBox">
+        <h3 style="color:white;">Explore The World Happiness Dataset</h3>
       </div>
-      <div class="textContent"><h3>Happiness Compared with the 6 Independent Variables </h3>
-        <p>
-          Feel free to browse the charts below to compare each of the previously discussed independent variables against the happiness score. You can change which variable is used to determine the area of the points from the drop down menu.
-         </p>
-            </div>
+    </div>
+    <div class="textContent">
+      <h3>Happiness Compared with the 6 Independent Variables </h3>
+      <p>
+        Feel free to browse the charts below to compare each of the previously discussed independent variables against
+        the happiness score. You can change which variable is used to determine the area of the points from the drop
+        down menu.
+      </p>
+    </div>
 
-        <div class="slideshow-container charts">
-          <p><strong>Area Variable:</strong></p>
-          <select id="areaSelection" class="select-css">
-            <option value="Ladder score">Happiness Score</option>
-            <option value="Healthy life expectancy">Life Expectancy</option>
-            <option value="Perceptions of corruption">Perceptions of Corruption</option>
-            <option value="Freedom to make life choices">Freedom to Make Life Choices</option>
-            <option value="Social support">Social Support</option>
-            <option value="Logged GDP per capita">GDP Per Capita Score</option>
-            <option value="Generosity">Generosity</option>
-          </select>
+    <div class="slideshow-container charts">
+      <p><strong>Area Variable:</strong></p>
+      <select id="areaSelection" class="areaVarSelector">
+        <option value="Ladder score">Happiness Score</option>
+        <option value="Healthy life expectancy">Life Expectancy</option>
+        <option value="Perceptions of corruption">Perceptions of Corruption</option>
+        <option value="Freedom to make life choices">Freedom to Make Life Choices</option>
+        <option value="Social support">Social Support</option>
+        <option value="Logged GDP per capita">GDP Per Capita Score</option>
+        <option value="Generosity">Generosity</option>
+      </select>
 
-            <div class="interactiveCharts fade charts">
-              <svg id="s1" class="svgChart"></svg>
-            </div>
-            
-            <div class="interactiveCharts fade charts">
-              <svg id="s2" class="svgChart"></svg>
-            </div>
-  
-            <div class="interactiveCharts fade charts">
-              <svg id="s3" class="svgChart"></svg>
-            </div>
+      <div class="interactiveCharts fade charts">
+        <svg id="s1" class="svgChart"></svg>
+      </div>
 
-            <div class="interactiveCharts fade charts">
-                <svg id="s4" class="svgChart"></svg>
-              </div>
+      <div class="interactiveCharts fade charts">
+        <svg id="s2" class="svgChart"></svg>
+      </div>
 
-              <div class="interactiveCharts fade charts">
-                <svg id="s5" class="svgChart"></svg>
-              </div>
+      <div class="interactiveCharts fade charts">
+        <svg id="s3" class="svgChart"></svg>
+      </div>
 
-              <div class="interactiveCharts fade charts">
-                <svg id="s6" class="svgChart"></svg>
-              </div>
-            
-            <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+      <div class="interactiveCharts fade charts">
+        <svg id="s4" class="svgChart"></svg>
+      </div>
 
-            <div style="text-align:center">
-                <span class="positionIndicator" onclick="currentSlide(1)"></span> 
-                <span class="positionIndicator" onclick="currentSlide(2)"></span> 
-                <span class="positionIndicator" onclick="currentSlide(3)"></span> 
-                <span class="positionIndicator" onclick="currentSlide(4)"></span> 
-                <span class="positionIndicator" onclick="currentSlide(5)"></span> 
-                <span class="positionIndicator" onclick="currentSlide(6)"></span> 
-              </div>
+      <div class="interactiveCharts fade charts">
+        <svg id="s5" class="svgChart"></svg>
+      </div>
+
+      <div class="interactiveCharts fade charts">
+        <svg id="s6" class="svgChart"></svg>
+      </div>
+
+      <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div style="text-align:center">
+      <span class="positionIndicator" onclick="currentSlide(1)"></span>
+      <span class="positionIndicator" onclick="currentSlide(2)"></span>
+      <span class="positionIndicator" onclick="currentSlide(3)"></span>
+      <span class="positionIndicator" onclick="currentSlide(4)"></span>
+      <span class="positionIndicator" onclick="currentSlide(5)"></span>
+      <span class="positionIndicator" onclick="currentSlide(6)"></span>
+    </div>
     <div style="position:relative;">
-        <div class="titleBox">
+      <div class="titleBox">
         <p>Copyright© 2020</p>
-        </div>
       </div>
-      <div class="parallax" id="parallax5">
+    </div>
+    <div class="parallax" id="parallax5">
 
     </div>
-    </div>
-    <script>
-        var happiness_score_domain = [1.9,8];
-        var life_exp_domain = [40,80];
-        var percp_corrup_domain = [0,1];
-        var frdm_life_choices_domain = [0.25,1];
-        var social_supp_domain = [0.25,1];
-        var gdp_score_domain = [6,12];
-        var generosity_domain =  [-.35,.6];
+  </div>
+  <script>
+    var happiness_score_domain = [1.9, 8];
+    var life_exp_domain = [40, 80];
+    var percp_corrup_domain = [0, 1];
+    var frdm_life_choices_domain = [0.25, 1];
+    var social_supp_domain = [0.25, 1];
+    var gdp_score_domain = [6, 12];
+    var generosity_domain = [-.35, .6];
 
-        var data;
+    var data;
 
-        function getDomain(rmetric){
-          switch(rmetric) {
-            case "Healthy life expectancy":
-              return life_exp_domain;
-            case "Perceptions of corruption":
-              return percp_corrup_domain;
-            case "Freedom to make life choices":
-              return frdm_life_choices_domain;
-            case "Social support":
-              return social_supp_domain;
-            case "Logged GDP per capita":
-              return gdp_score_domain;
-            case "Generosity":
-              return generosity_domain;
-            case "Ladder score":
-              return happiness_score_domain;
-            default:
-              return happiness_score_domain;
-          }
+    function getDomain(rmetric) {
+      switch (rmetric) {
+        case "Healthy life expectancy":
+          return life_exp_domain;
+        case "Perceptions of corruption":
+          return percp_corrup_domain;
+        case "Freedom to make life choices":
+          return frdm_life_choices_domain;
+        case "Social support":
+          return social_supp_domain;
+        case "Logged GDP per capita":
+          return gdp_score_domain;
+        case "Generosity":
+          return generosity_domain;
+        case "Ladder score":
+          return happiness_score_domain;
+        default:
+          return happiness_score_domain;
+      }
+    }
+
+    d3.select("#areaSelection").on("change", function (d) {
+      renderSlideShow(d3.select(this).property('value'))
+    })
+
+    function renderSlideShow(rMetric) {
+      rDomain = getDomain(rMetric);
+      var r = d3.scaleLinear().domain(rDomain).range([3, 25])
+
+      var d3_sel = d3.selectAll('.interactiveCharts');
+      d3_sel.selectAll('circle')
+        .data(data)
+        .transition().duration(250).delay(function (d, i) { return (i) * 10 + 20; })
+        .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
+    }
+
+    async function init() {
+      data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
+
+      await drawScatterPlotGeneric(data, '#s1', 'Healthy life expectancy', 'Life Expectancy', [1.9, 8], life_exp_domain, [2, 4, 6, 8], [40, 50, 60, 70, 80])
+      await drawScatterPlotGeneric(data, '#s2', 'Perceptions of corruption', 'Perceptions of Corruption', [1.9, 8], percp_corrup_domain, [2, 4, 6, 8], [0, 0.25, 0.50, 0.75, 1])
+      await drawScatterPlotGeneric(data, '#s3', 'Freedom to make life choices', 'Freedom to Make Life Choices', [1.9, 8], frdm_life_choices_domain, [2, 4, 6, 8], [0.25, 0.50, 0.75, 1])
+
+      await drawScatterPlotGeneric(data, '#s4', 'Social support', 'Social Support', [1.9, 8], social_supp_domain, [2, 4, 6, 8], [0.25, 0.50, 0.75, 1])
+      await drawScatterPlotGeneric(data, '#s5', 'Logged GDP per capita', 'GDP Per Capita Score', [1.9, 8], gdp_score_domain, [2, 4, 6, 8], [6, 8, 10, 12])
+      await drawScatterPlotGeneric(data, '#s6', 'Generosity', 'Generosity', [1.9, 8], generosity_domain, [2, 4, 6, 8], [-0.35, 0, 0.25, 0.4, 0.6])
+
+
+
+      await drawScatterPlotGeneric(data, '#sc1', 'Social support', 'Social Support', [39, 80], social_supp_domain, [40, 50, 60, 70, 80], [0.25, 0.50, 0.75, 1], xMetric = 'Healthy life expectancy', xLabel = 'Life Expectancy')
+      await drawScatterPlotGeneric(data, '#sc2', 'Logged GDP per capita', 'GDP Per Capita Score', [39, 80], gdp_score_domain, [40, 50, 60, 70, 80], [6, 8, 10, 12], xMetric = 'Healthy life expectancy', xLabel = 'Life Expectancy')
+      await drawScatterPlotGeneric(data, '#sc3', 'Social support', 'Social Support', gdp_score_domain, social_supp_domain, [6, 8, 10, 12], [0.25, 0.50, 0.75, 1], xMetric = 'Logged GDP per capita', xLabel = 'GDP Per Capita Score')
+
+
+      await drawScatterPlotGeneric(data, '#sc4', 'Perceptions of corruption', 'Perceptions of Corruption', [39, 80], percp_corrup_domain, [40, 50, 60, 70, 80], [0, 0.25, 0.50, 0.75, 1], xMetric = 'Healthy life expectancy', xLabel = 'Life Expectancy')
+      await drawScatterPlotGeneric(data, '#sc5', 'Generosity', 'Generosity Score', [39, 80], [-.35, .6], [40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric = 'Healthy life expectancy', xLabel = 'Life Expectancy')
+      await drawScatterPlotGeneric(data, '#sc6', 'Freedom to make life choices', 'Freedom to Make Life Choices', [39, 80], frdm_life_choices_domain, [40, 50, 60, 70, 80], [0.25, 0.50, 0.75, 1], xMetric = 'Healthy life expectancy', xLabel = 'Life Expectancy')
+      await drawScatterPlotGeneric(data, '#sc7', 'Freedom to make life choices', 'Freedom to Make Life Choices', gdp_score_domain, frdm_life_choices_domain, [6, 8, 10, 12], [0.25, 0.50, 0.75, 1], xMetric = 'Logged GDP per capita', xLabel = 'GDP Per Capita Score')
+
+      await drawBarChart(data, '#sc0', 'Country', 'Country', [1.9, 8], [2, 4, 6, 8], [])
+
+      const annotations = [
+        {
+          note: {
+            label: "High perceived corruption can be found across the range from least happy to happiest countries and the range of life expectancies",
+            title: "Widespread Corruption"
+          },
+          type: d3.annotationCalloutRect,
+          subject: {
+            width: window.screen.availWidth * .3125,
+            height: window.screen.availHeight * .21
+          },
+          color: ["purple"],
+          x: window.screen.availWidth * .156,
+          y: window.screen.availHeight * .104,
+          dy: window.screen.availHeight * .243,
+          dx: window.screen.availWidth * .039
         }
+      ]
 
-        d3.select("#areaSelection").on("change", function(d) {
-            renderSlideShow(d3.select(this).property('value'))
-        })
-
-        function renderSlideShow(rMetric){
-          rDomain = getDomain(rMetric);
-          var r = d3.scaleLinear().domain(rDomain).range([3, 25])
-
-          var d3_sel = d3.selectAll('.interactiveCharts');
-          d3_sel.selectAll('circle')
-          .data(data)
-          .transition().duration(250).delay(function(d,i) {return(i)*10 + 20;})
-          .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
-        }
-
-        async function init() {
-            data = await d3.csv("https://raw.githubusercontent.com/tpitla/tpitla.github.io/master/2020.csv");
-
-            await drawScatterPlotGeneric(data,'#s1', 'Healthy life expectancy', 'Life Expectancy',[1.9, 8], life_exp_domain, [2, 4, 6, 8], [40, 50, 60, 70, 80])
-            await drawScatterPlotGeneric(data,'#s2', 'Perceptions of corruption', 'Perceptions of Corruption',[1.9, 8], percp_corrup_domain, [2, 4, 6, 8],  [0, 0.25, 0.50, 0.75, 1])
-            await drawScatterPlotGeneric(data,'#s3', 'Freedom to make life choices', 'Freedom to Make Life Choices',[1.9, 8], frdm_life_choices_domain,[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
-
-            await drawScatterPlotGeneric(data,'#s4', 'Social support', 'Social Support',[1.9, 8], social_supp_domain,[2, 4, 6, 8], [0.25,0.50, 0.75, 1])
-            await drawScatterPlotGeneric(data,'#s5', 'Logged GDP per capita', 'GDP Per Capita Score',[1.9, 8], gdp_score_domain,[2, 4, 6, 8], [6, 8, 10,12])
-            await drawScatterPlotGeneric(data,'#s6', 'Generosity',  'Generosity',[1.9, 8], generosity_domain,[2, 4, 6, 8], [-0.35, 0, 0.25, 0.4, 0.6])
-
-
-
-            await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social Support',[39,80], social_supp_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'GDP Per Capita Score',[39,80], gdp_score_domain,[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc3', 'Social support', 'Social Support',gdp_score_domain, social_supp_domain,[6, 8, 10,12], [0.25,0.50, 0.75, 1], xMetric='Logged GDP per capita', xLabel='GDP Per Capita Score')
-
-
-            await drawScatterPlotGeneric(data,'#sc4', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc5', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc6',  'Freedom to make life choices', 'Freedom to Make Life Choices',[39,80], frdm_life_choices_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc7',  'Freedom to make life choices', 'Freedom to Make Life Choices',gdp_score_domain, frdm_life_choices_domain,[6, 8, 10,12], [0.25,0.50, 0.75, 1], xMetric='Logged GDP per capita', xLabel='GDP Per Capita Score')
-
-            await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
-
-            const annotations = [
-            {
-              note: {
-                label: "High perceived corruption can be found across the range from least happy to happiest countries and the range of life expectancies",
-                title: "Widespread Corruption"
-              },
-              type: d3.annotationCalloutRect,
-              subject: {
-                width: window.screen.availWidth* .3125,
-                height: window.screen.availHeight* .21 
-              },
-              color: ["purple"],
-              x: window.screen.availWidth* .156,
-              y: window.screen.availHeight* .104,
-              dy: window.screen.availHeight* .243, 
-              dx: window.screen.availWidth* .039
-            }
-          ]
-
-          const addAnnotation = d3.annotation()
-            .annotations(annotations)
-            d3.select("#sc4")
-            .append("g")
-            .style("font-size", "11px")
-            .call(addAnnotation)
-        }
-        var slideIndex = 1;
-        renderSlides(slideIndex);
-
-        function plusSlides(n) {
-          renderSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-          renderSlides(slideIndex = n);
-        }
-
-        function renderSlides(n) {
-        var positionIndicators = document.getElementsByClassName("positionIndicator");
-        var charts = document.getElementsByClassName("interactiveCharts");
-        var i;
-        if (n > charts.length) {
-            slideIndex = 1;
-        }    
-
-        if (n < 1) {
-            slideIndex = charts.length;
-        }
-        for (i = 0; i < charts.length; i++) {
-          charts[i].style.display = "none";  
-        }
-        for (i = 0; i < positionIndicators.length; i++) {
-          positionIndicators[i].className = positionIndicators[i].className.replace(" active", "");
-        }
-
-        positionIndicators[slideIndex-1].className += " active";
-        charts[slideIndex-1].style.display = "block";  
-        }
-
-
-        async function drawScatterPlotGeneric(data, targetSVG, metricToGraph, yLabel, xDomain, yDomain, xTicks, yTicks,  xMetric='Ladder score', xLabel='Happiness Score', rMetric='Ladder score', rDomain=happiness_score_domain ) {
-            var width = window.screen.availWidth*.45; 
-            var height = window.screen.availHeight*.45;
-            var margin = window.screen.availHeight*.10;
-            const innerWidth = width - margin;
-            const innerHeight = height - margin;
-
-            xMax = d3.max(data, function(d) {
-                return parseFloat(d['Ladder score']);
-            })
-
-            xMin = d3.min(data, function(d) {
-                return parseFloat(d['Ladder score']);
-            })
-
-            yMax = d3.max(data, function(d) {
-                return parseFloat(d[metricToGraph]);
-            })
-
-            yMin = d3.min(data, function(d) {
-                return parseFloat(d[metricToGraph]);
-            })
-
-            var x = d3.scaleLinear().domain(xDomain).range([0, width]);
-            var y = d3.scaleLinear().domain(yDomain).range([height, 0])
-            var r = d3.scaleLinear().domain(rDomain).range([3, 25])
-            
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            var tip = getTips();
-            var svg = d3.select(targetSVG);
-
-            svg
-            .attr("width", width *1.4 + 2 * margin)
-            .attr("height", height + 2 * margin)
-            .append("g")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(tip)
-            .selectAll("circle")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d, i) { return x(d[xMetric]); })
-            .attr("cy", function (d, i) { return y(d[metricToGraph]); })
-            .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
-            .style("fill", function(d) {return color(d["Regional indicator"]);})
-            .on('mouseover', tip.show)
-            .on('mouseout', tip.hide);
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + margin + ")")
-            .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~r")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', -innerHeight / 1.8)
-            .attr('y', -60)
-            .attr('transform', `rotate(-90)`)
-            .style('text-anchor', 'middle')
-            .text(yLabel);
-
-
-            svg.append("g")
-            .attr("class", "grid")
-            .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
-            .call(d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat(d3.format("~s")))
-            .append("text")
-            .attr('class', 'axis-label')
-            .attr('x', innerWidth / 1.8)
-            .attr('y', 100)
-            .text(xLabel);
-
-
-            var legend = svg.selectAll(".legend")
-            .data(color.domain())
-            .enter().append("g")
-            .classed("legend", true)
-            .attr("transform", function(d, i) {
-                return "translate(0," + i * 20 + ")";
-            });
-
-            legend.append("rect")
-            .attr("x", 1.15*width)
-            .attr("y", .5*height )
-            .attr("width", 15)
-            .attr("height", 15)
-            .style("fill", color)
-            .style("fill-opacity", 0.60);
-
-            legend.append("text")
-            .attr("x", 1.15* width + 25)
-            .attr("y", .5*height)
-            .attr("dy", ".70em")
-            .text(function(d) {
-            return d;}
-            );
-
-            svg.append("text")
-            .attr("x", ((width + margin*2) / 2))             
-            .attr("y", (margin / 2))
-            .attr("text-anchor", "middle")  
-            .attr("class", "chartTitle")
-            .text(yLabel + " vs. " + xLabel);
-        }
-
-
-        async function drawBarChart(data, targetSVG, metricToGraph, yLabel, xDomain, xTicks, yTicks,  xMetric='Ladder score', xLabel='Happiness Score') {
-
-        var width = window.screen.availWidth*.25;
-        var height = window.screen.availHeight*.25;
-        var margin = window.screen.availHeight*.25;
-        const innerWidth = width - margin;
-        const innerHeight = height - margin;
-
-        xMax = d3.max(data, function(d) {
-            return parseFloat(d['Ladder score']);
-        })
-
-        xMin = d3.min(data, function(d) {
-            return parseFloat(d['Ladder score']);
-        })
-
-        yMax = d3.max(data, function(d) {
-            return parseFloat(d[metricToGraph]);
-        })
-
-        yMin = d3.min(data, function(d) {
-            return parseFloat(d[metricToGraph]);
-        })
-
-        data = data.slice(0, 50);
-
-        var x = d3.scaleLinear().domain(xDomain).range([0, width]);
-        var y = d3.scaleBand()
-          .domain(data.map(function(d) { return d['Country name']; }))
-          .range([0, height*3])
-
-        var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
-
-        var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-        var tip = getTips()
-        var svg = d3.select(targetSVG);
-
-        svg
-        .attr("width", width *1.2 + 2 * margin)
-        .attr("height", height*2.7 + margin)
+      const addAnnotation = d3.annotation()
+        .annotations(annotations)
+      d3.select("#sc4")
         .append("g")
-        .attr("transform", "translate(" + margin + "," + margin/3 + ")")
+        .style("font-size", "11px")
+        .call(addAnnotation)
+    }
+    var slideIndex = 1;
+    renderSlides(slideIndex);
+
+    function plusSlides(n) {
+      renderSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      renderSlides(slideIndex = n);
+    }
+
+    function renderSlides(n) {
+      var positionIndicators = document.getElementsByClassName("positionIndicator");
+      var charts = document.getElementsByClassName("interactiveCharts");
+      var i;
+      if (n > charts.length) {
+        slideIndex = 1;
+      }
+
+      if (n < 1) {
+        slideIndex = charts.length;
+      }
+      for (i = 0; i < charts.length; i++) {
+        charts[i].style.display = "none";
+      }
+      for (i = 0; i < positionIndicators.length; i++) {
+        positionIndicators[i].className = positionIndicators[i].className.replace(" active", "");
+      }
+
+      positionIndicators[slideIndex - 1].className += " active";
+      charts[slideIndex - 1].style.display = "block";
+    }
+
+
+    async function drawScatterPlotGeneric(data, targetSVG, metricToGraph, yLabel, xDomain, yDomain, xTicks, yTicks, xMetric = 'Ladder score', xLabel = 'Happiness Score', rMetric = 'Ladder score', rDomain = happiness_score_domain) {
+      var width = window.screen.availWidth * .45;
+      var height = window.screen.availHeight * .45;
+      var margin = window.screen.availHeight * .10;
+      const innerWidth = width - margin;
+      const innerHeight = height - margin;
+
+      xMax = d3.max(data, function (d) {
+        return parseFloat(d['Ladder score']);
+      })
+
+      xMin = d3.min(data, function (d) {
+        return parseFloat(d['Ladder score']);
+      })
+
+      yMax = d3.max(data, function (d) {
+        return parseFloat(d[metricToGraph]);
+      })
+
+      yMin = d3.min(data, function (d) {
+        return parseFloat(d[metricToGraph]);
+      })
+
+      var x = d3.scaleLinear().domain(xDomain).range([0, width]);
+      var y = d3.scaleLinear().domain(yDomain).range([height, 0])
+      var r = d3.scaleLinear().domain(rDomain).range([3, 25])
+
+      var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+      var tip = getTips();
+      var svg = d3.select(targetSVG);
+
+      svg
+        .attr("width", width * 1.4 + 2 * margin)
+        .attr("height", height + 2 * margin)
+        .append("g")
+        .attr("transform", "translate(" + margin + "," + margin + ")")
         .call(tip)
-        .selectAll("rect")
+        .selectAll("circle")
         .data(data)
         .enter()
-        .append('rect')
-          .attr('x',0)
-          .attr('y',function(d,i) {return y(d['Country name']);})
-          .attr('width',function(d,i) {return x(d[xMetric]);})
-          .attr('height',y.bandwidth()*.95)
-        .style("fill", function(d) {return color(d["Regional indicator"]);})
-        .style("fill-opacity", 0.85)
+        .append("circle")
+        .attr("cx", function (d, i) { return x(d[xMetric]); })
+        .attr("cy", function (d, i) { return y(d[metricToGraph]); })
+        .attr("r", function (d, i) { return r(parseFloat(d[rMetric])); })
+        .style("fill", function (d) { return color(d["Regional indicator"]); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
 
-        svg.append("g")
-            .attr("transform", "translate(" + margin + "," + (height*3 + margin/3) + ")")
-            .call(d3.axisBottom(x))
-            .append("text")
-          .attr('class', 'axis-label')
-          .attr('x', innerWidth)
-          .attr('y', 70)
-          .text(xLabel);
+      svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(" + margin + "," + margin + ")")
+        .call(d3.axisLeft(y).tickValues(yTicks).tickSize(-width).tickFormat(d3.format("~r")))
+        .append("text")
+        .attr('class', 'axis-label')
+        .attr('x', -innerHeight / 1.8)
+        .attr('y', -60)
+        .attr('transform', `rotate(-90)`)
+        .style('text-anchor', 'middle')
+        .text(yLabel);
 
-        svg.append("g")
-            .attr("transform", "translate(" + margin + "," + margin/3 + ")")
-            .call(d3.axisLeft(y))
 
-        svg.append("text")
-        .attr("x", ((width + margin*2) / 2))             
-        .attr("y", (margin / 8))
-        .attr("text-anchor", "middle")  
-        .attr("class", "chartTitle")
-        .text("Top 50 Happiest Countries");
+      svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(" + margin + "," + (height + margin) + ")")
+        .call(d3.axisBottom(x).tickValues(xTicks).tickSize(-height).tickFormat(d3.format("~s")))
+        .append("text")
+        .attr('class', 'axis-label')
+        .attr('x', innerWidth / 1.8)
+        .attr('y', 100)
+        .text(xLabel);
 
-        var legend = svg.selectAll(".legend")
+
+      var legend = svg.selectAll(".legend")
         .data(color.domain())
         .enter().append("g")
         .classed("legend", true)
-        .attr("transform", function(d, i) {
-            return "translate(0," + i * 20 + ")";
+        .attr("transform", function (d, i) {
+          return "translate(0," + i * 20 + ")";
         });
 
-        legend.append("rect")
-        .attr("x",1.6*width)
-        .attr("y", .9*height )
+      legend.append("rect")
+        .attr("x", 1.15 * width)
+        .attr("y", .5 * height)
         .attr("width", 15)
         .attr("height", 15)
         .style("fill", color)
         .style("fill-opacity", 0.60);
 
-        legend.append("text")
-        .attr("x", 1.6* width + 25)
-        .attr("y", .9*height)
+      legend.append("text")
+        .attr("x", 1.15 * width + 25)
+        .attr("y", .5 * height)
         .attr("dy", ".70em")
-        .text(function(d) {
-        return d;}
+        .text(function (d) {
+          return d;
+        }
         );
-        }
 
-        function getTips() {
-         var tip = 
-          d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
-            .html(function(d) {
-                var content = "";
-                content +=                  
-                    'Country Name: ' + 
-                    d['Country name'] +
-                    "<br/>"  +
-                    'Happiness Score: ' + 
-                    parseFloat(d['Ladder score']).toFixed(2) +
-                    "<br/>"  +
-                    'Life Expectancy: ' + 
-                    parseFloat(d['Healthy life expectancy']).toFixed(2) +
-                    "<br/>"  +
-                    'Freedom to Make Life Choices: ' + 
-                    parseFloat(d['Freedom to make life choices']).toFixed(2) +
-                    "<br/>" +
-                    'Social Support: ' + 
-                    parseFloat(d['Social support']).toFixed(2) +
-                    "<br/>"  +
-                    'GDP Per Capita Score: ' + 
-                    parseFloat(d['Logged GDP per capita']).toFixed(2) +
-                    "<br/>"  +
-                    'Perceptions of Corruption: ' + 
-                    parseFloat(d['Perceptions of corruption']).toFixed(2) +
-                    "<br/>"  +
-                    'Generosity: ' + 
-                    parseFloat(d['Generosity']).toFixed(2) +
-                    "<br/>";
-                return content;
-            });
-            return tip;
-        }
+      svg.append("text")
+        .attr("x", ((width + margin * 2) / 2))
+        .attr("y", (margin / 2))
+        .attr("text-anchor", "middle")
+        .attr("class", "chartTitle")
+        .text(yLabel + " vs. " + xLabel);
+    }
 
-    </script>
+
+    async function drawBarChart(data, targetSVG, metricToGraph, yLabel, xDomain, xTicks, yTicks, xMetric = 'Ladder score', xLabel = 'Happiness Score') {
+
+      var width = window.screen.availWidth * .25;
+      var height = window.screen.availHeight * .25;
+      var margin = window.screen.availHeight * .25;
+      const innerWidth = width - margin;
+      const innerHeight = height - margin;
+
+      xMax = d3.max(data, function (d) {
+        return parseFloat(d['Ladder score']);
+      })
+
+      xMin = d3.min(data, function (d) {
+        return parseFloat(d['Ladder score']);
+      })
+
+      yMax = d3.max(data, function (d) {
+        return parseFloat(d[metricToGraph]);
+      })
+
+      yMin = d3.min(data, function (d) {
+        return parseFloat(d[metricToGraph]);
+      })
+
+      data = data.slice(0, 50);
+
+      var x = d3.scaleLinear().domain(xDomain).range([0, width]);
+      var y = d3.scaleBand()
+        .domain(data.map(function (d) { return d['Country name']; }))
+        .range([0, height * 3])
+
+      var r = d3.scaleLinear().domain([0.35, 1]).range([6, 20])
+
+      var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+      var tip = getTips()
+      var svg = d3.select(targetSVG);
+
+      svg
+        .attr("width", width * 1.2 + 2 * margin)
+        .attr("height", height * 2.7 + margin)
+        .append("g")
+        .attr("transform", "translate(" + margin + "," + margin / 3 + ")")
+        .call(tip)
+        .selectAll("rect")
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', 0)
+        .attr('y', function (d, i) { return y(d['Country name']); })
+        .attr('width', function (d, i) { return x(d[xMetric]); })
+        .attr('height', y.bandwidth() * .95)
+        .style("fill", function (d) { return color(d["Regional indicator"]); })
+        .style("fill-opacity", 0.85)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+
+      svg.append("g")
+        .attr("transform", "translate(" + margin + "," + (height * 3 + margin / 3) + ")")
+        .call(d3.axisBottom(x))
+        .append("text")
+        .attr('class', 'axis-label')
+        .attr('x', innerWidth)
+        .attr('y', 70)
+        .text(xLabel);
+
+      svg.append("g")
+        .attr("transform", "translate(" + margin + "," + margin / 3 + ")")
+        .call(d3.axisLeft(y))
+
+      svg.append("text")
+        .attr("x", ((width + margin * 2) / 2))
+        .attr("y", (margin / 8))
+        .attr("text-anchor", "middle")
+        .attr("class", "chartTitle")
+        .text("Top 50 Happiest Countries");
+
+      var legend = svg.selectAll(".legend")
+        .data(color.domain())
+        .enter().append("g")
+        .classed("legend", true)
+        .attr("transform", function (d, i) {
+          return "translate(0," + i * 20 + ")";
+        });
+
+      legend.append("rect")
+        .attr("x", 1.6 * width)
+        .attr("y", .9 * height)
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill", color)
+        .style("fill-opacity", 0.60);
+
+      legend.append("text")
+        .attr("x", 1.6 * width + 25)
+        .attr("y", .9 * height)
+        .attr("dy", ".70em")
+        .text(function (d) {
+          return d;
+        }
+        );
+    }
+
+    function getTips() {
+      var tip =
+        d3.tip().attr('class', 'd3-tip').direction('e').offset([0, 5])
+          .html(function (d) {
+            var content = "";
+            content +=
+              'Country Name: ' +
+              d['Country name'] +
+              "<br/>" +
+              'Happiness Score: ' +
+              parseFloat(d['Ladder score']).toFixed(2) +
+              "<br/>" +
+              'Life Expectancy: ' +
+              parseFloat(d['Healthy life expectancy']).toFixed(2) +
+              "<br/>" +
+              'Freedom to Make Life Choices: ' +
+              parseFloat(d['Freedom to make life choices']).toFixed(2) +
+              "<br/>" +
+              'Social Support: ' +
+              parseFloat(d['Social support']).toFixed(2) +
+              "<br/>" +
+              'GDP Per Capita Score: ' +
+              parseFloat(d['Logged GDP per capita']).toFixed(2) +
+              "<br/>" +
+              'Perceptions of Corruption: ' +
+              parseFloat(d['Perceptions of corruption']).toFixed(2) +
+              "<br/>" +
+              'Generosity: ' +
+              parseFloat(d['Generosity']).toFixed(2) +
+              "<br/>";
+            return content;
+          });
+      return tip;
+    }
+
+  </script>
 </body>
+
 </html>
