@@ -514,17 +514,17 @@
         <svg id="s6" class="svgChart"></svg>
       </div>
 
-      <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <a class="previous" onclick="goToSlideOffset(-1)">&#10094;</a>
+      <a class="next" onclick="goToSlideOffset(1)">&#10095;</a>
     </div>
 
     <div style="text-align:center">
-      <span class="positionIndicator" onclick="currentSlide(1)"></span>
-      <span class="positionIndicator" onclick="currentSlide(2)"></span>
-      <span class="positionIndicator" onclick="currentSlide(3)"></span>
-      <span class="positionIndicator" onclick="currentSlide(4)"></span>
-      <span class="positionIndicator" onclick="currentSlide(5)"></span>
-      <span class="positionIndicator" onclick="currentSlide(6)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(1)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(2)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(3)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(4)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(5)"></span>
+      <span class="positionIndicator" onclick="GoToSlideNum(6)"></span>
     </div>
     <div style="position:relative;">
       <div class="titleBox">
@@ -636,11 +636,11 @@
     var slideIndex = 1;
     renderSlides(slideIndex);
 
-    function plusSlides(n) {
+    function goToSlideOffset(n) {
       renderSlides(slideIndex += n);
     }
 
-    function currentSlide(n) {
+    function GoToSlideNum(n) {
       renderSlides(slideIndex = n);
     }
 
