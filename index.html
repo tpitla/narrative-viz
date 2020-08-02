@@ -479,7 +479,8 @@
       <h3>Happiness Compared with the 6 Independent Variables </h3>
       <p>
         Feel free to browse the charts below to compare each of the previously discussed independent variables against
-        the happiness score. You can click the arrow buttons on the sides or you can use your left and right arrow keys to navigate. You can also change which variable is used to determine the area of the points from the drop
+        the happiness score. You can click the arrow buttons on the sides or you can use your left and right arrow keys
+        to navigate. You can also change which variable is used to determine the area of the points from the drop
         down menu.
       </p>
     </div>
@@ -625,7 +626,10 @@
 
       await drawBarChart(data, '#sc0', 'Country', 'Country', [1.9, 8], [2, 4, 6, 8], [])
 
-      const annotations = [
+      var height = window.screen.availHeight;
+      var width = window.screen.availWidth;
+
+      const sc4_annotations = [
         {
           note: {
             label: "High perceived corruption can be found across the range from least happy to happiest countries and the range of life expectancies",
@@ -633,23 +637,41 @@
           },
           type: d3.annotationCalloutRect,
           subject: {
-            width: window.screen.availWidth * .3125,
-            height: window.screen.availHeight * .21
+            width: width * .3125,
+            height: height * .21
           },
           color: ["purple"],
-          x: window.screen.availWidth * .156,
-          y: window.screen.availHeight * .104,
-          dy: window.screen.availHeight * .243,
-          dx: window.screen.availWidth * .039
-        }
+          x: width * .156,
+          y: height * .104,
+          dy: height * .243,
+          dx: width * .039
+        },
       ]
 
-      const addAnnotation = d3.annotation()
-        .annotations(annotations)
-      d3.select("#sc4")
-        .append("g")
-        .style("font-size", "11px")
-        .call(addAnnotation)
+      const sc2_annotations = [
+        {
+          note: {
+            label: "GDP per capita and life expectancy show a clear correlation. This association appears to exist between all 3 variables discussed and happiness.",
+            title: "Strong Linear Association"
+          },
+          color: ["purple"],
+          x: width * .35,
+          y: height * .35,
+          dy: height * .05,
+          dx: width * .039
+        },
+      ]
+      addAnAnnotation(sc2_annotations, "#sc2");
+      addAnAnnotation(sc4_annotations, "#sc4");
+
+      function addAnAnnotation(annotation, target) {
+        const addAnnotation = d3.annotation()
+          .annotations(annotation)
+        d3.select(target)
+          .append("g")
+          .style("font-size", "11px")
+          .call(addAnnotation)
+      }
     }
     var slideIndex = 1;
     renderSlides(slideIndex);
