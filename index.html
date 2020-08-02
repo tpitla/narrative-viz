@@ -1,7 +1,7 @@
 <html>
 <script src='https://d3js.org/d3.v5.min.js'></script>
 <script src="d3-tip.js"></script>
-
+<script src="d3-annotation.js"></script>
 <style>
 
     body, html {
@@ -669,10 +669,33 @@ h3 {
 
             await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
 
-//drawBarChart
-            // await drawScatterPlot();
-            // await drawScatterPlot2();
-            // await drawScatterPlot3();
+
+
+            const annotations = [
+            {
+              note: {
+                label: "High perceived corruption can be found across the range from least happy to happiest countries",
+                title: "Corruption at all levels"
+              },
+              type: d3.annotationCalloutRect,
+              subject: {
+                width: 800,
+                height: 300
+              },
+              color: ["red"],
+              x: 400,
+              y: 150,
+              dy: 350,
+              dx: -100
+            }
+          ]
+
+          const addAnnotation = d3.annotation()
+            .annotations(annotations)
+          d3.select("#sc4")
+            .append("g")
+            .call(addAnnotation)
+
         }
 
 
