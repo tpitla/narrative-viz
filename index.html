@@ -55,7 +55,7 @@
     }
 
 
-/* Adapted from https://www.w3schools.com/howto/howto_css_parallax.asp */
+    /* Adapted from https://www.w3schools.com/howto/howto_css_parallax.asp */
     .parallax {
     background-repeat: no-repeat;
     background-size: cover;
@@ -96,10 +96,6 @@
     min-height: 100%;
     }
 
-
-
-
-
     .titleBox {
         color:#ddd;
         background-color:#282E34;
@@ -114,10 +110,6 @@
         text-align: center;
         padding: 50px 30px;
         text-align: justify;
-
-
-        /* font: 20px "Lato", sans-serif; */
-    
     }
 
     .textContent p {
@@ -129,69 +121,86 @@
     }
 
 
+    .textContent h3 {
+      padding-bottom: 40px;
+    }
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+  text-align: center;
+  font-size: 28;
+}
+
+.axis-label {
+        fill: black;
+        font-size: 20;
+        font: 14px "Lato", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+.chartTitle {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font: 16px "Lato", sans-serif;
+  color: #111;
+  text-align: center;
+  font-size: 14pt;
+}
+.caption {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        color: #000;
+    }
+
+  .caption span.border {
+      background-color: rgb(0, 0, 0);
+      color: #fff;
+      padding: 18px;
+      font-size: 25px;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      font: 20px "Lato", sans-serif;
+  }
 
 
-
-
-
-
-
-
-    /* Slideshow container */
+/*Adapted from https://www.w3schools.com/howto/howto_js_slideshow.asp*/
 .slideshow-container {
   position: relative;
   margin: auto;
 }
 
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: black;
+.previous, .next {
+  border-radius: 0 4px 4px 0;
+  user-select: none;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  cursor: pointer;
+  position: absolute;
+  margin-top: -22px;
+  color: black;
 }
 
-/* Position the "next button" to the right */
 .next {
+  border-radius: 4px 0 0 4px;
   right: 0;
-  border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.previous:hover, .next:hover {
+  background-color: rgba(48, 43, 43, 0.8);
 }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
+.positionIndicator {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -202,44 +211,33 @@
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active, .positionIndicator:hover {
   background-color: #717171;
 }
 
-/* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 2s;
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 2s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .3} 
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4} 
+  from {opacity: .3} 
   to {opacity: 1}
 }
 
 * {box-sizing: border-box}
 
-.mySlides {display: none}
+.interactiveCharts {display: none}
 img {vertical-align: middle;}
 
-
-
-
-
-
-
-
-
-
-
-
+/*Adapted from https://www.filamentgroup.com/lab/select-css.html*/
 .select-css {
 	display: block;
 	font-size: 16px;
@@ -281,55 +279,6 @@ img {vertical-align: middle;}
 .select-css option {
 	font-weight:normal;
 }
-
-.textContent h3 {
-padding-bottom: 40px;
-}
-
-h3 {
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
-  color: #111;
-  text-align: center;
-  font-size: 28;
-}
-
-.axis-label {
-        fill: black;
-        font-size: 20;
-        font: 14px "Lato", sans-serif;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-    }
-
-.chartTitle {
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font: 16px "Lato", sans-serif;
-  color: #111;
-  text-align: center;
-  font-size: 14pt;
-}
-
-.caption {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 100%;
-        text-align: center;
-        color: #000;
-    }
-
-  .caption span.border {
-      background-color: rgb(0, 0, 0);
-      color: #fff;
-      padding: 18px;
-      font-size: 25px;
-      letter-spacing: 10px;
-      text-transform: uppercase;
-      font: 20px "Lato", sans-serif;
-  }
 </style>
 <head>
   <title>World Happiness Visualization</title>
@@ -481,41 +430,41 @@ h3 {
             <option value="Generosity">Generosity</option>
           </select>
 
-            <div class="mySlides fade charts">
+            <div class="interactiveCharts fade charts">
               <svg id="s1" class="svgChart"></svg>
             </div>
             
-            <div class="mySlides fade charts">
+            <div class="interactiveCharts fade charts">
               <svg id="s2" class="svgChart"></svg>
             </div>
   
-            <div class="mySlides fade charts">
+            <div class="interactiveCharts fade charts">
               <svg id="s3" class="svgChart"></svg>
             </div>
 
-            <div class="mySlides fade charts">
+            <div class="interactiveCharts fade charts">
                 <svg id="s4" class="svgChart"></svg>
               </div>
 
-              <div class="mySlides fade charts">
+              <div class="interactiveCharts fade charts">
                 <svg id="s5" class="svgChart"></svg>
               </div>
 
-              <div class="mySlides fade charts">
+              <div class="interactiveCharts fade charts">
                 <svg id="s6" class="svgChart"></svg>
               </div>
             
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="previous" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
 
             <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span> 
-                <span class="dot" onclick="currentSlide(4)"></span> 
-                <span class="dot" onclick="currentSlide(5)"></span> 
-                <span class="dot" onclick="currentSlide(6)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(1)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(2)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(3)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(4)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(5)"></span> 
+                <span class="positionIndicator" onclick="currentSlide(6)"></span> 
               </div>
     <div style="position:relative;">
         <div class="titleBox">
@@ -528,12 +477,12 @@ h3 {
     </div>
     <script>
         var happiness_score_domain = [1.9,8];
-        var life_exp_domain = [40,80]; // 39, 80?
+        var life_exp_domain = [40,80];
         var percp_corrup_domain = [0,1];
         var frdm_life_choices_domain = [0.25,1];
         var social_supp_domain = [0.25,1];
         var gdp_score_domain = [6,12];
-        var generosity_domain =  [-.35,.6]; //-.35, .6?
+        var generosity_domain =  [-.35,.6];
 
         var data;
 
@@ -564,10 +513,9 @@ h3 {
 
         function renderSlideShow(rMetric){
           rDomain = getDomain(rMetric);
-          console.log(rDomain);
           var r = d3.scaleLinear().domain(rDomain).range([3, 25])
 
-          var d3_sel = d3.selectAll('.mySlides');
+          var d3_sel = d3.selectAll('.interactiveCharts');
           d3_sel.selectAll('circle')
           .data(data)
           .transition().duration(250).delay(function(d,i) {return(i)*10 + 20;})
@@ -620,36 +568,42 @@ h3 {
 
           const addAnnotation = d3.annotation()
             .annotations(annotations)
-          d3.select("#sc4")
+            d3.select("#sc4")
             .append("g")
             .style("font-size", "11px")
             .call(addAnnotation)
         }
         var slideIndex = 1;
-        showSlides(slideIndex);
+        renderSlides(slideIndex);
 
         function plusSlides(n) {
-        showSlides(slideIndex += n);
+          renderSlides(slideIndex += n);
         }
 
         function currentSlide(n) {
-        showSlides(slideIndex = n);
+          renderSlides(slideIndex = n);
         }
 
-        function showSlides(n) {
+        function renderSlides(n) {
+        var positionIndicators = document.getElementsByClassName("positionIndicator");
+        var charts = document.getElementsByClassName("interactiveCharts");
         var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+        if (n > charts.length) {
+            slideIndex = 1;
+        }    
+
+        if (n < 1) {
+            slideIndex = charts.length;
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
+        for (i = 0; i < charts.length; i++) {
+          charts[i].style.display = "none";  
         }
-        slides[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
+        for (i = 0; i < positionIndicators.length; i++) {
+          positionIndicators[i].className = positionIndicators[i].className.replace(" active", "");
+        }
+
+        positionIndicators[slideIndex-1].className += " active";
+        charts[slideIndex-1].style.display = "block";  
         }
 
 
@@ -675,9 +629,6 @@ h3 {
             yMin = d3.min(data, function(d) {
                 return parseFloat(d[metricToGraph]);
             })
-
-            console.log('Metric to graph: ' + metricToGraph);
-            console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
 
             var x = d3.scaleLinear().domain(xDomain).range([0, width]);
             var y = d3.scaleLinear().domain(yDomain).range([height, 0])
@@ -787,8 +738,6 @@ h3 {
         })
 
         data = data.slice(0, 50);
-        console.log('Metric to graph: ' + metricToGraph);
-        console.log('xMax: ' + xMax + ' yMax: ' + yMax + ' yMin: ' + yMin);
 
         var x = d3.scaleLinear().domain(xDomain).range([0, width]);
         var y = d3.scaleBand()
