@@ -679,14 +679,14 @@ h3 {
               },
               type: d3.annotationCalloutRect,
               subject: {
-                width: 800,
-                height: 300
+                width: window.screen.availWidth* .3125, //800,
+                height: window.screen.availHeight* .21 //300
               },
               color: ["red"],
-              x: 400,
-              y: 150,
-              dy: 350,
-              dx: -100
+              x: window.screen.availWidth* .156,//400,
+              y: window.screen.availHeight* .104,//150,
+              dy: window.screen.availHeight* .243, //350,
+              dx: window.screen.availWidth* .039//-100
             }
           ]
 
