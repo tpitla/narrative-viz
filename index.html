@@ -137,7 +137,7 @@
     font-size: 28;
   }
 
-  #selectorCaption{
+  #selectorCaption {
     letter-spacing: 4px;
     text-transform: uppercase;
     font: 20px "Lato", sans-serif;
@@ -542,6 +542,18 @@
     </div>
   </div>
   <script>
+    document.onkeydown = function (e) {
+      switch (e.keyCode) {
+        case 37:
+          goToSlideOffset(-1);
+          break;
+        case 39:
+          goToSlideOffset(1)
+          break;
+
+      }
+    };
+
     var happiness_score_domain = [1.9, 8];
     var life_exp_domain = [40, 80];
     var percp_corrup_domain = [0, 1];
