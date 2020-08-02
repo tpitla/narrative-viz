@@ -23,11 +23,7 @@
         font-size: 18;
     }
 
-    .axis-label {
-        fill: black;
-        font-size: 20;
-        font-family: sans-serif;
-    }
+
 
     .d3-tip {
       color: #fff;
@@ -74,7 +70,7 @@
 
     #parallax1 {
     opacity: 0.65;
-    background-image: url("ocean2.jpg");
+    background-image: url("sb2.jpg");
     height: 100%;
     }
 
@@ -87,11 +83,17 @@
 
     #parallax3 {
     opacity: 0.65;
-    background-image: url("sb2.jpg");
+    background-image: url("sunset2.jpg");
     height: 50%;
     }
 
     #parallax4 {
+    opacity: 0.65;
+    background-image: url("electric2.jpg");
+    height: 50%;
+    }
+
+    #parallax5 {
     opacity: 0.65;
     background-image: url("plane2.jpg");
     height: 50%;
@@ -306,6 +308,33 @@ h3 {
   font: 20px "Lato", sans-serif;
   color: #111;
   text-align: center;
+  font-size: 28;
+}
+
+/* .axisText {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+  text-align: center;
+  font-size: 14pt;
+} */
+
+.axis-label {
+        fill: black;
+        font-size: 20;
+        font: 16px "Lato", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+
+.chartTitle {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+  text-align: center;
+  font-size: 16pt;
 }
 
 
@@ -363,6 +392,8 @@ h3 {
           We can look at the relations between social support, per capita GDP and life expectancy and see that there appears to be a strong correlation between all three and with perceived happiness. This suggests that countries that are strong in one of these factors tend to be strong in the others as well, Strong and weak results in these categories tend to occur together. 
          </p>
 
+         <p>The colored coded regions in these charts makes it abundantly clear that the wealthiest parts of world (Western Europe, North America, etc.) perform the best on these measures and the impoverished areas tend to score more poorly.</p>
+
             </div>
             <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
 <p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p> </div>
@@ -371,8 +402,10 @@ h3 {
           </svg>
       </div>
 
-      <div class="textContent" style="padding-bottom: 0px; padding-top: 0px;">
-        <p>Life expectancy and social support tend to climb together linear indicating a linear relationship. The area of the points tend to increase towards the top right which suggests that percieved happiness is higher with higher life expectancies and greater social support.</p> </div>
+      <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+        <p>Life expectancy and social support tend to climb together linear indicating a linear relationship. The area of the points tend to increase towards the top right which suggests that percieved happiness is higher with higher life expectancies and greater social support. We see similar patterns in the next two charts</p>
+       
+      </div>
 
       <div class="charts">
         <svg id="sc2" class="svgChart">
@@ -384,9 +417,36 @@ h3 {
         </svg>
     </div>
 
+
+    <div class="parallax" id="parallax4">
+    </div>
+
+    <div style="position:relative;">
+        <div class="titleBox">
+          <h3 style="color:white;">Additional Happiness Factors</h3>
+        </div>
+      </div>
+
+    <div class="textContent" style="padding: 0px; padding-top: 50px;"><h3>Corruption, Generosity and Freedom</h3>
+      <p>
+        The World Happiness Report data identifies Perceptions of corruption, Generosity and the Freedom to make life choices as generally being a smaller factor than the first three in contributing to overall feelings of happiness. Generosity is based on the self-reported frequency of charity donations. Perceptions of corruption and Freedom to make life choices scores are based on survey questions designed to measure public opinion on the topics. 
+       </p>
+       <p>
+        The associations between these factors and our previously discussed ones and happiness is more subtle, there are no well defined strong correlations here.
+       </p>
+ </div>
+ <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
+  <p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p> </div>
+
+
   <div class="charts">
     <svg id="sc4" class="svgChart">
     </svg>
+  </div>
+
+  <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+    <p>Countries that report highs levels of perceived corruption can range from the poorest to the wealthiest and unhappiest to happiest, however the countries that report low levels of corruption are almost exclusively well developed, wealthy, healthy and happy nations.</p>
+   
   </div>
 
 
@@ -394,6 +454,11 @@ h3 {
     <svg id="sc5" class="svgChart">
     </svg>
   </div>
+      <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+        <p>The countries that score the highest on Generosity fall more in the middle of the pack on other measures. There are many instances of the unhappiest and the happiest places having similar levels of Generosity</p>
+       
+      </div>
+  
 
 
   <div class="charts">
@@ -407,15 +472,8 @@ h3 {
     </svg>
   </div>
 
-
-  <div class="charts">
-    <svg id="sc8" class="svgChart">
-    </svg>
-  </div>
-
-  <div class="charts">
-    <svg id="sc9" class="svgChart">
-    </svg>
+  <div class="textContent" style="padding-bottom: 50px; padding-top: 0px;">
+    <p>Higher degrees of perceived freedom appears to correspond with stronger general measures of development (per capita GDP, life expectency, etc.) and greater happiness but this association is somewhat weaker than the three primary factors from the previous section.</p>
   </div>
 
 
@@ -430,13 +488,9 @@ h3 {
           <h3 style="color:white;">Explore The World Happiness Dataset</h3>
         </div>
       </div>
-      <div class="textContent"><h3>Explore The World Happiness Dataset</h3>
-        <p>By so delight of showing neither believe he present. Deal sigh up in shew away when. Pursuit express no or prepare replied. Wholly formed old latter future but way she. Day her likewise smallest expenses judgment building man carriage gay. Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-            Respect forming clothes do in he. Course so piqued no an by appear. Themselves reasonable pianoforte so motionless he as difficulty be. Abode way begin ham there power whole. Do unpleasing indulgence impossible to conviction. Suppose neither evident welcome it at do civilly uncivil. Sing tall much you get nor. 
-        
-        By impossible of in difficulty discovered celebrated ye. Justice joy manners boy met resolve produce. Bed head loud next plan rent had easy add him. As earnestly shameless elsewhere defective estimable fulfilled of. Esteem my advice it an excuse enable. Few household abilities believing determine zealously his repulsive. To open draw dear be by side like. 
-        
-        Ought these are balls place mrs their times add she. Taken no great widow spoke of it small. Genius use except son esteem merely her limits. Sons park by do make on. It do oh cottage offered cottage in written. Especially of dissimilar up attachment themselves by interested boisterous. Linen mrs seems men table. Jennings dashwood to quitting marriage bachelor in. On as conviction in of appearance apartments boisterous. 
+      <div class="textContent"><h3>Happiness Compared with the 6 Independent Variables </h3>
+        <p>
+          Feel free to browse the charts below to compare each of the previously discussed independent variables against the happiness score. You can change which variable is used to determine the area of the points from the drop down menu.
          </p>
             </div>
 
@@ -510,7 +564,7 @@ h3 {
         </div>
       </div>
 
-      <div class="parallax" id="parallax4">
+      <div class="parallax" id="parallax5">
 
     </div>
 
@@ -605,6 +659,7 @@ h3 {
             await drawScatterPlotGeneric(data,'#sc4', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
             await drawScatterPlotGeneric(data,'#sc5', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
             await drawScatterPlotGeneric(data,'#sc6',  'Freedom to make life choices', 'Freedom to Make Life Choices',[39,80], frdm_life_choices_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc7',  'Freedom to make life choices', 'Freedom to Make Life Choices',gdp_score_domain, frdm_life_choices_domain,[6, 8, 10,12], [0.25,0.50, 0.75, 1], xMetric='Logged GDP per capita', xLabel='GDP Per Capita Score')
 
             await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
 
@@ -756,9 +811,9 @@ h3 {
 
             svg.append("text")
             .attr("x", ((width + margin*2) / 2))             
-            .attr("y", (margin / 3))
+            .attr("y", (margin / 2))
             .attr("text-anchor", "middle")  
-            .style("font-size", "28")  
+            .attr("class", "chartTitle")
             .text(yLabel + " vs. " + xLabel);
         }
 
@@ -888,8 +943,11 @@ h3 {
         .attr("x", ((width + margin*2) / 2))             
         .attr("y", (margin / 8))
         .attr("text-anchor", "middle")  
-        .style("font-size", "28")  
+        .attr("class", "chartTitle")
         .text("Top 50 Happiest Countries");
+
+
+
 
 
 
