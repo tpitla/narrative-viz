@@ -311,7 +311,9 @@ h3 {
 
 
 </style>
-
+<head>
+  <title>World Happiness Visualization</title>
+</head>
 <body onload='init()'>
     <!-- <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button> -->
 
@@ -356,36 +358,65 @@ h3 {
           <h3 style="color:white;">Happiness Factors</h3>
         </div>
       </div>
-      <div class="textContent"><h3>This is a placeholder</h3>
-        <p>By so delight of showing neither believe he present. Deal sigh up in shew away when. Pursuit express no or prepare replied. Wholly formed old latter future but way she. Day her likewise smallest expenses judgment building man carriage gay. Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-            Respect forming clothes do in he. Course so piqued no an by appear. Themselves reasonable pianoforte so motionless he as difficulty be. Abode way begin ham there power whole. Do unpleasing indulgence impossible to conviction. Suppose neither evident welcome it at do civilly uncivil. Sing tall much you get nor. 
-        
-        By impossible of in difficulty discovered celebrated ye. Justice joy manners boy met resolve produce. Bed head loud next plan rent had easy add him. As earnestly shameless elsewhere defective estimable fulfilled of. Esteem my advice it an excuse enable. Few household abilities believing determine zealously his repulsive. To open draw dear be by side like. 
-        
-        Ought these are balls place mrs their times add she. Taken no great widow spoke of it small. Genius use except son esteem merely her limits. Sons park by do make on. It do oh cottage offered cottage in written. Especially of dissimilar up attachment themselves by interested boisterous. Linen mrs seems men table. Jennings dashwood to quitting marriage bachelor in. On as conviction in of appearance apartments boisterous. 
+      <div class="textContent"><h3>Social Support, Per Capita GDP and Life Expectancy</h3>
+        <p>
+          We can look at the relations between social support, per capita GDP and life expectancy and see that there appears to be a strong correlation between all three and with perceived happiness. This suggests that countries that are strong in one of these factors tend to be strong in the others as well, Strong and weak results in these categories tend to occur together. 
          </p>
+
             </div>
+            <div class="textContent" style="padding-bottom: 0px; padding-top: 10px;">
+<p><strong>*The area of points in the below charts represents the relative happiness score.</strong></p> </div>
+        <div class="charts">
+          <svg id="sc1" class="svgChart">
+          </svg>
+      </div>
 
-
-            <div class="charts">
-              <svg id="sc1" class="svgChart">
-              </svg>
-          </div>
+      <div class="textContent" style="padding-bottom: 0px; padding-top: 0px;">
+        <p>Life expectancy and social support tend to climb together linear indicating a linear relationship. The area of the points tend to increase towards the top right which suggests that percieved happiness is higher with higher life expectancies and greater social support.</p> </div>
 
       <div class="charts">
         <svg id="sc2" class="svgChart">
         </svg>
     </div>
-          <div class="charts">
+
+    <div class="charts">
         <svg id="sc3" class="svgChart">
         </svg>
     </div>
 
-  </div>
   <div class="charts">
-<svg id="sc4" class="svgChart">
-</svg>
-</div>
+    <svg id="sc4" class="svgChart">
+    </svg>
+  </div>
+
+
+  <div class="charts">
+    <svg id="sc5" class="svgChart">
+    </svg>
+  </div>
+
+
+  <div class="charts">
+    <svg id="sc6" class="svgChart">
+    </svg>
+  </div>
+
+
+  <div class="charts">
+    <svg id="sc7" class="svgChart">
+    </svg>
+  </div>
+
+
+  <div class="charts">
+    <svg id="sc8" class="svgChart">
+    </svg>
+  </div>
+
+  <div class="charts">
+    <svg id="sc9" class="svgChart">
+    </svg>
+  </div>
 
 
     <div class="parallax" id="parallax2">
@@ -566,12 +597,14 @@ h3 {
 
 
 
-
+            await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social Support',[39,80], social_supp_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
             await drawScatterPlotGeneric(data,'#sc2', 'Logged GDP per capita', 'GDP Per Capita Score',[39,80], gdp_score_domain,[40, 50, 60, 70, 80], [6, 8, 10,12], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc1', 'Social support', 'Social support',[39,80], social_supp_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc3', 'Social support', 'Social Support',gdp_score_domain, social_supp_domain,[6, 8, 10,12], [0.25,0.50, 0.75, 1], xMetric='Logged GDP per capita', xLabel='GDP Per Capita Score')
 
-            await drawScatterPlotGeneric(data,'#sc3', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
-            await drawScatterPlotGeneric(data,'#sc4', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+
+            await drawScatterPlotGeneric(data,'#sc4', 'Perceptions of corruption', 'Perceptions of Corruption',[39,80], percp_corrup_domain,[40, 50, 60, 70, 80],  [0, 0.25, 0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc5', 'Generosity', 'Generosity Score',[39,80], [-.35, .6],[40, 50, 60, 70, 80], [-0.35, 0, 0.25, 0.6], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
+            await drawScatterPlotGeneric(data,'#sc6',  'Freedom to make life choices', 'Freedom to Make Life Choices',[39,80], frdm_life_choices_domain,[40, 50, 60, 70, 80], [0.25,0.50, 0.75, 1], xMetric='Healthy life expectancy', xLabel='Life Expectancy')
 
             await drawBarChart(data,'#sc0', 'Country', 'Country',[1.9, 8],[2, 4, 6, 8], [])
 
@@ -657,7 +690,7 @@ h3 {
 
             svg
             .attr("width", width *1.4 + 2 * margin)
-            .attr("height", height * 1.2 + 2 * margin)
+            .attr("height", height + 2 * margin)
             .append("g")
             .attr("transform", "translate(" + margin + "," + margin + ")")
             .call(tip)
@@ -782,7 +815,7 @@ h3 {
 
         svg
         .attr("width", width *1.2 + 2 * margin)
-        .attr("height", height*2.6 + margin)
+        .attr("height", height*2.7 + margin)
         .append("g")
         .attr("transform", "translate(" + margin + "," + margin/3 + ")")
         .call(tip)
