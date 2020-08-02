@@ -121,19 +121,28 @@
         color:#ddd;
         background-color:#282E34;
         text-align:center;
-        padding:50px 80px;
+        padding:5px 80px;
         text-align: justify;
     }
 
-    .textContent {
+    .textContent  {
         color: #777;
         background-color: white;
         text-align: center;
         padding: 50px 30px;
         text-align: justify;
 
+
         /* font: 20px "Lato", sans-serif; */
     
+    }
+
+    .textContent p {
+    text-align: center;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
     }
 
 
@@ -315,18 +324,14 @@ h3 {
 
       <div style="position:relative;">
         <div class="titleBox">
-            <p>This is a cool report on human happiness factors</p>
+          <h3 style="color:white;">The Happiest Countries On Earth</h3>
         </div>
       </div>
 
     <div class="textContent">
-      <h3>This is a placeholder</h3>
-<p>By so delight of showing neither believe he present. Deal sigh up in shew away when. Pursuit express no or prepare replied. Wholly formed old latter future but way she. Day her likewise smallest expenses judgment building man carriage gay. Considered introduced themselves mr to discretion at. Means among saw hopes for. Death mirth in oh learn he equal on.
-    Respect forming clothes do in he. Course so piqued no an by appear. Themselves reasonable pianoforte so motionless he as difficulty be. Abode way begin ham there power whole. Do unpleasing indulgence impossible to conviction. Suppose neither evident welcome it at do civilly uncivil. Sing tall much you get nor. 
-
-By impossible of in difficulty discovered celebrated ye. Justice joy manners boy met resolve produce. Bed head loud next plan rent had easy add him. As earnestly shameless elsewhere defective estimable fulfilled of. Esteem my advice it an excuse enable. Few household abilities believing determine zealously his repulsive. To open draw dear be by side like. 
-
-Ought these are balls place mrs their times add she. Taken no great widow spoke of it small. Genius use except son esteem merely her limits. Sons park by do make on. It do oh cottage offered cottage in written. Especially of dissimilar up attachment themselves by interested boisterous. Linen mrs seems men table. Jennings dashwood to quitting marriage bachelor in. On as conviction in of appearance apartments boisterous. 
+      <!-- <h3>The Happiest Countries On Earth</h3> -->
+<p>
+  The United Nations Sustainable Development Solutions Network publishes an annual <a href="https://worldhappiness.report/">report</a> that ranks 156 countries on their inhabitant’s perceived happiness. The data originates from a variety of sources with the primary one being the Gallup World Poll. Below we see a subset of the world happiness ranking from the report.
  </p>
     </div>
 
@@ -336,10 +341,12 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
       </svg>
   </div>
 
-    <div class="charts">
-        <svg id="sc1" class="svgChart">
-        </svg>
-    </div>
+  <div class="textContent">
+<p>
+  The rankings and cumulative happiness scores are based on at least 6 other independent variables: GDP Per capita, Social support, Healthy life expectancy at birth, Freedom to make life choices, Generosity and Perceptions of corruption. It is instructive to study how these factors relate with each other and the overall happiness score.</p>
+  </div>
+
+
 
     <div class="parallax" id="parallax3">
     </div>
@@ -358,6 +365,12 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
         Ought these are balls place mrs their times add she. Taken no great widow spoke of it small. Genius use except son esteem merely her limits. Sons park by do make on. It do oh cottage offered cottage in written. Especially of dissimilar up attachment themselves by interested boisterous. Linen mrs seems men table. Jennings dashwood to quitting marriage bachelor in. On as conviction in of appearance apartments boisterous. 
          </p>
             </div>
+
+
+            <div class="charts">
+              <svg id="sc1" class="svgChart">
+              </svg>
+          </div>
 
       <div class="charts">
         <svg id="sc2" class="svgChart">
@@ -769,7 +782,7 @@ Ought these are balls place mrs their times add she. Taken no great widow spoke 
 
         svg
         .attr("width", width *1.2 + 2 * margin)
-        .attr("height", height*3 + margin)
+        .attr("height", height*2.6 + margin)
         .append("g")
         .attr("transform", "translate(" + margin + "," + margin/3 + ")")
         .call(tip)
